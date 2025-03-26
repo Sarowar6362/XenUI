@@ -1,0 +1,3 @@
+/home/sarowar/Documents/XenonUI/build/CMakeFiles/XenUI.dir
+/home/sarowar/Documents/XenonUI/build/CMakeFiles/edit_cache.dir
+/home/sarowar/Documents/XenonUI/build/CMakeFiles/rebuild_cache.dir

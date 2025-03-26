@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include",
+    "/usr/include/X11",
+    "/usr/include/X11/extensions",
+    "/usr/include/freetype2",
+    "/usr/include/X11/Xft"
+            ],
+            "defines": [],
+            "compilerPath": "/home/sarowar/Android/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
