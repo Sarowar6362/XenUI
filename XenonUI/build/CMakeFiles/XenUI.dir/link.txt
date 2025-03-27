@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o CMakeFiles/XenUI.dir/src/ui/Label.cpp.o -o XenUI  /usr/lib/x86_64-linux-gnu/libSM.so /usr/lib/x86_64-linux-gnu/libICE.so /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libGLU.so /usr/lib/x86_64-linux-gnu/libXft.so -lGLX 
