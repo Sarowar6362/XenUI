@@ -680,9 +680,6 @@ X11_xkbfile_INCLUDE_PATH:PATH=X11_xkbfile_INCLUDE_PATH-NOTFOUND
 //Path to a library.
 X11_xkbfile_LIB:FILEPATH=X11_xkbfile_LIB-NOTFOUND
 
-//Path to a library.
-XFT_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXft.so
-
 //Value Computed by CMake
 XenUI_BINARY_DIR:STATIC=/home/sarowar/Documents/XenonUI/build
 
@@ -693,10 +690,16 @@ XenUI_IS_TOP_LEVEL:STATIC=ON
 XenUI_SOURCE_DIR:STATIC=/home/sarowar/Documents/XenonUI
 
 //Path to a library.
+pkgcfg_lib_FREETYPE_freetype:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
+
+//Path to a library.
 pkgcfg_lib_PKG_FONTCONFIG_fontconfig:FILEPATH=/usr/lib/x86_64-linux-gnu/libfontconfig.so
 
 //Path to a library.
 pkgcfg_lib_PKG_FONTCONFIG_freetype:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
+
+//Path to a library.
+pkgcfg_lib_XFT_Xft:FILEPATH=/usr/lib/x86_64-linux-gnu/libXft.so
 
 
 ########################
@@ -860,16 +863,53 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenGL.so][/usr/lib/x86_64-linux-gnu/libGLX.so][/usr/include][c ][v()]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v1.8.1()]
 //Details about finding X11
 FIND_PACKAGE_MESSAGE_DETAILS_X11:INTERNAL=[/usr/include][/usr/lib/x86_64-linux-gnu/libX11.so][c ][v()]
+FREETYPE_CFLAGS:INTERNAL=-I/usr/include/freetype2;-I/usr/include;-I/usr/include/libpng16
+FREETYPE_CFLAGS_I:INTERNAL=
+FREETYPE_CFLAGS_OTHER:INTERNAL=
+FREETYPE_FOUND:INTERNAL=1
+FREETYPE_INCLUDEDIR:INTERNAL=/usr/include
+FREETYPE_INCLUDE_DIRS:INTERNAL=/usr/include/freetype2;/usr/include;/usr/include/libpng16
 //ADVANCED property for variable: FREETYPE_INCLUDE_DIR_freetype2
 FREETYPE_INCLUDE_DIR_freetype2-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: FREETYPE_INCLUDE_DIR_ft2build
 FREETYPE_INCLUDE_DIR_ft2build-ADVANCED:INTERNAL=1
+FREETYPE_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lfreetype
+FREETYPE_LDFLAGS_OTHER:INTERNAL=
+FREETYPE_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+FREETYPE_LIBRARIES:INTERNAL=freetype
 //ADVANCED property for variable: FREETYPE_LIBRARY_DEBUG
 FREETYPE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+FREETYPE_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
 //ADVANCED property for variable: FREETYPE_LIBRARY_RELEASE
 FREETYPE_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+FREETYPE_LIBS:INTERNAL=
+FREETYPE_LIBS_L:INTERNAL=
+FREETYPE_LIBS_OTHER:INTERNAL=
+FREETYPE_LIBS_PATHS:INTERNAL=
+FREETYPE_MODULE_NAME:INTERNAL=freetype2
+FREETYPE_PREFIX:INTERNAL=/usr
+FREETYPE_STATIC_CFLAGS:INTERNAL=-I/usr/include/freetype2;-I/usr/include;-I/usr/include/libpng16
+FREETYPE_STATIC_CFLAGS_I:INTERNAL=
+FREETYPE_STATIC_CFLAGS_OTHER:INTERNAL=
+FREETYPE_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/freetype2;/usr/include;/usr/include/libpng16
+FREETYPE_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lfreetype;-lbz2;-L/usr/lib/x86_64-linux-gnu;-L/usr/lib/x86_64-linux-gnu;-lz;-lpng16;-lm;-lz;-lm;-L/usr/lib/x86_64-linux-gnu;-L/usr/lib/x86_64-linux-gnu;-lz;-lbrotlidec;-L/usr/lib/x86_64-linux-gnu;-lbrotlicommon
+FREETYPE_STATIC_LDFLAGS_OTHER:INTERNAL=
+FREETYPE_STATIC_LIBDIR:INTERNAL=
+FREETYPE_STATIC_LIBRARIES:INTERNAL=freetype;bz2;z;png16;m;z;m;z;brotlidec;brotlicommon
+FREETYPE_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu
+FREETYPE_STATIC_LIBS:INTERNAL=
+FREETYPE_STATIC_LIBS_L:INTERNAL=
+FREETYPE_STATIC_LIBS_OTHER:INTERNAL=
+FREETYPE_STATIC_LIBS_PATHS:INTERNAL=
+FREETYPE_VERSION:INTERNAL=26.1.20
+FREETYPE_freetype2_INCLUDEDIR:INTERNAL=
+FREETYPE_freetype2_LIBDIR:INTERNAL=
+FREETYPE_freetype2_PREFIX:INTERNAL=
+FREETYPE_freetype2_VERSION:INTERNAL=
 //ADVANCED property for variable: Fontconfig_INCLUDE_DIR
 Fontconfig_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Fontconfig_LIBRARY
@@ -1207,13 +1247,56 @@ X11_xkbcommon_X11_LIB-ADVANCED:INTERNAL=1
 X11_xkbfile_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xkbfile_LIB
 X11_xkbfile_LIB-ADVANCED:INTERNAL=1
+XFT_CFLAGS:INTERNAL=-I/usr/include;-I/usr/include/freetype2;-I/usr/include/libpng16
+XFT_CFLAGS_I:INTERNAL=
+XFT_CFLAGS_OTHER:INTERNAL=
+XFT_FOUND:INTERNAL=1
+XFT_INCLUDEDIR:INTERNAL=/usr/include
+XFT_INCLUDE_DIRS:INTERNAL=/usr/include;/usr/include/freetype2;/usr/include/libpng16
+XFT_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lXft
+XFT_LDFLAGS_OTHER:INTERNAL=
+XFT_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+XFT_LIBRARIES:INTERNAL=Xft
+XFT_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
+XFT_LIBS:INTERNAL=
+XFT_LIBS_L:INTERNAL=
+XFT_LIBS_OTHER:INTERNAL=
+XFT_LIBS_PATHS:INTERNAL=
+XFT_MODULE_NAME:INTERNAL=xft
+XFT_PREFIX:INTERNAL=/usr
+XFT_STATIC_CFLAGS:INTERNAL=-I/usr/include;-I/usr/include/freetype2;-I/usr/include/libpng16;-DXML_STATIC
+XFT_STATIC_CFLAGS_I:INTERNAL=
+XFT_STATIC_CFLAGS_OTHER:INTERNAL=-DXML_STATIC
+XFT_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include;/usr/include/freetype2;/usr/include/libpng16
+XFT_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lXft;-L/usr/lib/x86_64-linux-gnu;-lXrender;-lX11;-lpthread;-L/usr/lib/x86_64-linux-gnu;-lxcb;-L/usr/lib/x86_64-linux-gnu;-lXau;-L/usr/lib/x86_64-linux-gnu;-lX11;-lpthread;-L/usr/lib/x86_64-linux-gnu;-lxcb;-L/usr/lib/x86_64-linux-gnu;-lXau;-lXdmcp;-lfontconfig;-lbz2;-L/usr/lib/x86_64-linux-gnu;-L/usr/lib/x86_64-linux-gnu;-lz;-lm;-lz;-lm;-L/usr/lib/x86_64-linux-gnu;-L/usr/lib/x86_64-linux-gnu;-lz;-L/usr/lib/x86_64-linux-gnu;-lbrotlicommon;-L/usr/lib/x86_64-linux-gnu;-lexpat;-lm;-lfreetype;-lbz2;-L/usr/lib/x86_64-linux-gnu;-L/usr/lib/x86_64-linux-gnu;-lz;-lpng16;-lm;-lz;-lm;-L/usr/lib/x86_64-linux-gnu;-L/usr/lib/x86_64-linux-gnu;-lz;-lbrotlidec;-L/usr/lib/x86_64-linux-gnu;-lbrotlicommon
+XFT_STATIC_LDFLAGS_OTHER:INTERNAL=
+XFT_STATIC_LIBDIR:INTERNAL=
+XFT_STATIC_LIBRARIES:INTERNAL=Xft;Xrender;X11;pthread;xcb;Xau;X11;pthread;xcb;Xau;Xdmcp;fontconfig;bz2;z;m;z;m;z;brotlicommon;expat;m;freetype;bz2;z;png16;m;z;m;z;brotlidec;brotlicommon
+XFT_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu
+XFT_STATIC_LIBS:INTERNAL=
+XFT_STATIC_LIBS_L:INTERNAL=
+XFT_STATIC_LIBS_OTHER:INTERNAL=
+XFT_STATIC_LIBS_PATHS:INTERNAL=
+XFT_VERSION:INTERNAL=2.3.6
+XFT_xft_INCLUDEDIR:INTERNAL=
+XFT_xft_LIBDIR:INTERNAL=
+XFT_xft_PREFIX:INTERNAL=
+XFT_xft_VERSION:INTERNAL=
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
+__pkg_config_arguments_FREETYPE:INTERNAL=REQUIRED;freetype2
 __pkg_config_arguments_PKG_FONTCONFIG:INTERNAL=QUIET;fontconfig
+__pkg_config_arguments_XFT:INTERNAL=REQUIRED;xft
+__pkg_config_checked_FREETYPE:INTERNAL=1
 __pkg_config_checked_PKG_FONTCONFIG:INTERNAL=1
+__pkg_config_checked_XFT:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FREETYPE_freetype
+pkgcfg_lib_FREETYPE_freetype-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_PKG_FONTCONFIG_fontconfig
 pkgcfg_lib_PKG_FONTCONFIG_fontconfig-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_PKG_FONTCONFIG_freetype
 pkgcfg_lib_PKG_FONTCONFIG_freetype-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_XFT_Xft
+pkgcfg_lib_XFT_Xft-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/usr/lib/x86_64-linux-gnu
 

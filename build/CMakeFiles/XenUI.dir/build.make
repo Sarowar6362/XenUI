@@ -114,7 +114,7 @@ XenUI: /usr/lib/x86_64-linux-gnu/libX11.so
 XenUI: /usr/lib/x86_64-linux-gnu/libXext.so
 XenUI: /usr/lib/x86_64-linux-gnu/libGL.so
 XenUI: /usr/lib/x86_64-linux-gnu/libGLU.so
-XenUI: /usr/lib/x86_64-linux-gnu/libXft.so
+XenUI: /usr/lib/x86_64-linux-gnu/libfreetype.so
 XenUI: CMakeFiles/XenUI.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable XenUI"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/XenUI.dir/link.txt --verbose=$(VERBOSE)

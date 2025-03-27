@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/freetype2 -I/usr/include/X11
+CXX_INCLUDES = -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/X11
 
 CXX_FLAGS = -std=gnu++20
 
