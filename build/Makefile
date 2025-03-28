@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarowar/Documents/XenonUI/build/CMakeFiles /home/sarowar/Documents/XenonUI/build//CMakeFiles/progress.marks
@@ -128,6 +173,54 @@ XenUI: cmake_check_build_system
 XenUI/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/build
 .PHONY : XenUI/fast
+
+src/core/App.o: src/core/App.cpp.o
+.PHONY : src/core/App.o
+
+# target to build an object file
+src/core/App.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/core/App.cpp.o
+.PHONY : src/core/App.cpp.o
+
+src/core/App.i: src/core/App.cpp.i
+.PHONY : src/core/App.i
+
+# target to preprocess a source file
+src/core/App.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/core/App.cpp.i
+.PHONY : src/core/App.cpp.i
+
+src/core/App.s: src/core/App.cpp.s
+.PHONY : src/core/App.s
+
+# target to generate assembly for a file
+src/core/App.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/core/App.cpp.s
+.PHONY : src/core/App.cpp.s
+
+src/graphics/opengl/TextRenderer.o: src/graphics/opengl/TextRenderer.cpp.o
+.PHONY : src/graphics/opengl/TextRenderer.o
+
+# target to build an object file
+src/graphics/opengl/TextRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.o
+.PHONY : src/graphics/opengl/TextRenderer.cpp.o
+
+src/graphics/opengl/TextRenderer.i: src/graphics/opengl/TextRenderer.cpp.i
+.PHONY : src/graphics/opengl/TextRenderer.i
+
+# target to preprocess a source file
+src/graphics/opengl/TextRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.i
+.PHONY : src/graphics/opengl/TextRenderer.cpp.i
+
+src/graphics/opengl/TextRenderer.s: src/graphics/opengl/TextRenderer.cpp.s
+.PHONY : src/graphics/opengl/TextRenderer.s
+
+# target to generate assembly for a file
+src/graphics/opengl/TextRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.s
+.PHONY : src/graphics/opengl/TextRenderer.cpp.s
 
 src/platform/linux/linux.o: src/platform/linux/linux.cpp.o
 .PHONY : src/platform/linux/linux.o
@@ -184,8 +277,18 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... XenUI"
+	@echo "... src/core/App.o"
+	@echo "... src/core/App.i"
+	@echo "... src/core/App.s"
+	@echo "... src/graphics/opengl/TextRenderer.o"
+	@echo "... src/graphics/opengl/TextRenderer.i"
+	@echo "... src/graphics/opengl/TextRenderer.s"
 	@echo "... src/platform/linux/linux.o"
 	@echo "... src/platform/linux/linux.i"
 	@echo "... src/platform/linux/linux.s"

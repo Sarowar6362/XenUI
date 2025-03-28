@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/XenUI.dir/src/core/App.cpp.o"
+  "CMakeFiles/XenUI.dir/src/core/App.cpp.o.d"
+  "CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.o"
+  "CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.o.d"
   "CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o"
   "CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o.d"
   "CMakeFiles/XenUI.dir/src/ui/Label.cpp.o"

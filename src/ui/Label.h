@@ -1,24 +1,21 @@
-#ifndef XENUI_LABEL_H
-#define XENUI_LABEL_H
+#ifndef LABEL_H
+#define LABEL_H
 
 #include <string>
-#include <X11/Xlib.h>
-#include <X11/Xft/Xft.h>
+#include "../graphics/opengl/TextRenderer.h"
 
 class Label {
 public:
-    Label(Display* display, Window parent, int x, int y, const std::string& text);
-    ~Label();
+    Label(const std::string& text, float x, float y, float scale = 1.0f);
+    void setText(const std::string& newText);
     void draw();
 
 private:
-    Display* display;
-    Window parent;
-    int x, y;
-    std::string text;
-    XftFont* font;
-    XftColor color;
-    XftDraw* xftDraw;
+    std::string m_text;
+    float m_x;
+    float m_y;
+    float m_scale;
+    TextRenderer& m_textRenderer;
 };
 
-#endif // XENUI_LABEL_H
+#endif

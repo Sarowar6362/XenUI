@@ -1,69 +1,61 @@
-#include "../../ui/Label.h"
-#include <X11/Xlib.h>
-#include <GL/gl.h>
-#include <GL/glx.h>
+#include <GL/glew.h>
+#include <GL/glut.h>
 #include <iostream>
+#include <fstream>  // Required for std::ifstream
+#include "../../graphics/opengl/TextRenderer.h"
 
-Display* display;
-Window window;
-GLXContext glContext;
-bool running = true;
-Label* label = nullptr;
-
-void createWindow(int width, int height) {
-    display = XOpenDisplay(nullptr);
-    int screen = DefaultScreen(display);
-    Window root = RootWindow(display, screen);
-
-    // Use OpenGL-compatible visual
-    GLint visualAttr[] = { GLX_RGBA, GLX_DOUBLEBUFFER, GLX_DEPTH_SIZE, 24, None };
-    XVisualInfo* vi = glXChooseVisual(display, screen, visualAttr);
-    Colormap colormap = XCreateColormap(display, root, vi->visual, AllocNone);
-
-    XSetWindowAttributes swa;
-    swa.colormap = colormap;
-    swa.event_mask = ExposureMask | KeyPressMask | StructureNotifyMask;
-
-    window = XCreateWindow(display, root, 0, 0, width, height, 0, vi->depth, 
-                           InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
-    XMapWindow(display, window);
-    XStoreName(display, window, "XenUI");
-
-    glContext = glXCreateContext(display, vi, nullptr, GL_TRUE);
-    glXMakeCurrent(display, window, glContext);
-    glViewport(0, 0, width, height);
-}
+TextRenderer& textRenderer = TextRenderer::getInstance();
 
 void render() {
-    // Clear OpenGL buffer
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    glXSwapBuffers(display, window); // Show OpenGL content
 
-    // Draw label AFTER swapping buffers
-    if (label) label->draw();
+    // Set up proper blending
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Render test text
+    float whiteColor[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+    textRenderer.renderText("Test Texture", 50, 500, 1.0f, whiteColor);
+    
+    glutSwapBuffers();
 }
 
-void eventLoop() {
-    XEvent event;
-    while (running) {
-        XNextEvent(display, &event);
-
-        if (event.type == DestroyNotify || event.type == KeyPress) {
-            running = false;
-        } else if (event.type == Expose || event.type == ConfigureNotify) {
-            if (event.type == ConfigureNotify) {
-                glViewport(0, 0, event.xconfigure.width, event.xconfigure.height);
-            }
-            render(); // Redraw on resize/expose
-        }
+void setup() {
+    // Verify font path
+    const char* fontPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
+    std::cout << "Attempting to load font from: " << fontPath << std::endl;
+    
+    // Check if font file exists
+    std::ifstream fontFile(fontPath);
+    if (!fontFile.good()) {
+        std::cerr << "ERROR: Font file not found at " << fontPath << std::endl;
+        std::cerr << "Try installing with: sudo apt-get install fonts-dejavu" << std::endl;
+        exit(1);
     }
+    fontFile.close();
+
+    textRenderer.init(fontPath, 48);
+    textRenderer.setProjection(800, 600);
 }
 
-int main() {
-    createWindow(800, 600);
-    label = new Label(display, window, 50, 50, "Hello, XenUI!");
-    render(); // Initial draw
-    eventLoop();
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+    glutInitWindowSize(800, 600);
+    glutCreateWindow("OpenGL Text Rendering");
+
+    // Initialize GLEW properly
+    glewExperimental = GL_TRUE;
+    GLenum err = glewInit();
+    if (err != GLEW_OK) {
+        std::cerr << "GLEW Error: " << glewGetErrorString(err) << std::endl;
+        return 1;
+    }
+
+    setup();
+    glutDisplayFunc(render);
+    glutMainLoop();
+
     return 0;
 }
