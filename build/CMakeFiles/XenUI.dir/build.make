@@ -147,6 +147,7 @@ XenUI: /usr/lib/x86_64-linux-gnu/libXext.so
 XenUI: /usr/lib/x86_64-linux-gnu/libGL.so
 XenUI: /usr/lib/x86_64-linux-gnu/libGLU.so
 XenUI: /usr/lib/x86_64-linux-gnu/libfreetype.so
+XenUI: /usr/lib/x86_64-linux-gnu/libfreetype.so
 XenUI: /usr/lib/x86_64-linux-gnu/libGLEW.so
 XenUI: /usr/lib/x86_64-linux-gnu/libglut.so
 XenUI: CMakeFiles/XenUI.dir/link.txt

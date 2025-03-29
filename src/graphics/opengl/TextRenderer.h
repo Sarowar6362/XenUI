@@ -1,3 +1,5 @@
+//src/graphics/opengl/TextRenderer.h
+//dont remove first two coomments
 #ifndef TEXT_RENDERER_H
 #define TEXT_RENDERER_H
 
@@ -9,12 +11,17 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <vector>
+#include <fstream>  // Add this at the top of your file
+
+
 
 // ... rest of your header ...
 class TextRenderer {
 public:
     static TextRenderer& getInstance();
-    
+    bool isInitialized() const { return m_initialized; }  // Add this
+    void checkGLErrors(const char* context);  // Add this
     void init(const std::string& fontPath, unsigned int fontSize);
     void renderText(const std::string& text, float x, float y, float scale, 
                    const float color[4] = nullptr);

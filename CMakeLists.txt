@@ -43,6 +43,7 @@ target_compile_definitions(XenUI PRIVATE
 target_link_libraries(XenUI PRIVATE
     ${X11_LIBRARIES}
     ${OPENGL_LIBRARIES}
+    ${FREETYPE_LIBRARIES}
     glm::glm
     Freetype::Freetype
     GLEW::GLEW

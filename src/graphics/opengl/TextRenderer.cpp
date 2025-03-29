@@ -1,3 +1,5 @@
+//src/graphics/opengl/TextRenderer.cpp
+//dont remove first two coomments
 #include "TextRenderer.h"
 #include <iostream>
 
@@ -66,41 +68,79 @@ void TextRenderer::compileShaders() {
     
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+
+
+
+    ///aded
+    GLint success;
+    char infoLog[512];
+    
+    // Vertex shader
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        std::cerr << "Vertex shader compile error:\n" << infoLog << "\n";
+    }
+
+    // Fragment shader
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        std::cerr << "Fragment shader compile error:\n" << infoLog << "\n";
+    }
+
+    // Program linking
+    glGetProgramiv(m_shaderProgram, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(m_shaderProgram, 512, NULL, infoLog);
+        std::cerr << "Shader program link error:\n" << infoLog << "\n";
+    }
+}
+
+void TextRenderer::checkGLErrors(const char* context) {
+    GLenum err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        std::cerr << "OpenGL ERROR (" << context << "): " << err << "\n";
+    }
 }
 
 void TextRenderer::init(const std::string& fontPath, unsigned int fontSize) {
     if (m_initialized) return;
 
-    // Debug font path
-    std::cout << "Loading font from: " << fontPath << std::endl;
+    // 1. Verify font file exists
+    std::ifstream fontStream(fontPath);
+if (!fontStream.good()) {
+    std::cerr << "ERROR: Font file not found at " << fontPath << "\n";
+    std::cerr << "Install DejaVu fonts: sudo apt-get install fonts-dejavu\n";
+    exit(1);
+}
+fontStream.close();
 
+    // 2. Initialize FreeType
     if (FT_Init_FreeType(&m_ft)) {
-        std::cerr << "ERROR::FREETYPE: Could not init FreeType Library\n";
+        std::cerr << "FREETYPE INIT ERROR\n";
         return;
     }
 
+    // 3. Load face
     if (FT_New_Face(m_ft, fontPath.c_str(), 0, &m_face)) {
-        std::cerr << "ERROR::FREETYPE: Failed to load font at " << fontPath << "\n";
+        std::cerr << "FONT LOAD ERROR: " << fontPath << "\n";
         FT_Done_FreeType(m_ft);
         return;
     }
 
-    // Verify font size
-    if (fontSize < 1) fontSize = 24;
+    // 4. Set size and alignment
     FT_Set_Pixel_Sizes(m_face, 0, fontSize);
-
-    // Critical texture alignment fix
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    checkGLErrors("Font setup");
 
+    // 5. Load glyphs
     for (unsigned char c = 0; c < 128; c++) {
         if (FT_Load_Char(m_face, c, FT_LOAD_RENDER)) {
             std::cerr << "WARNING: Failed to load Glyph '" << c << "'\n";
             continue;
         }
-
-        // Debug glyph info
-        
-
+    
         GLuint texture;
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
@@ -111,21 +151,30 @@ void TextRenderer::init(const std::string& fontPath, unsigned int fontSize) {
             0, GL_RED, GL_UNSIGNED_BYTE,
             m_face->glyph->bitmap.buffer
         );
+    
+        // CORRECTED VALIDATION (using m_face instead of face)
+        GLint texWidth, texHeight;
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &texWidth);
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texHeight);
+        
+        if (texWidth != m_face->glyph->bitmap.width || texHeight != m_face->glyph->bitmap.rows) {
+            std::cerr << "TEXTURE SIZE MISMATCH for '" << c << "': " 
+                      << "Expected " << m_face->glyph->bitmap.width << "x" << m_face->glyph->bitmap.rows
+                      << ", got " << texWidth << "x" << texHeight << "\n";
+        }       // Verify texture
+        // GLint width = 0;
+        // glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+        // if (width != m_face->glyph->bitmap.width) {
+        //     std::cerr << "TEXTURE CREATION FAILED FOR CHAR: " << c << "\n";
+        // }
 
-        // Verify texture creation
-        GLint width;
-        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
-        if (width != m_face->glyph->bitmap.width) {
-            std::cerr << "ERROR: Texture creation failed for glyph '" << c << "'\n";
-        }
-
-        // Set texture options
+        // Set parameters
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        // Store character for later use
+        // Store character
         m_characters[c] = {
             texture,
             static_cast<int>(m_face->glyph->bitmap.width),
@@ -136,19 +185,17 @@ void TextRenderer::init(const std::string& fontPath, unsigned int fontSize) {
         };
     }
 
-    // Clean up FreeType
+    // 6. Cleanup FreeType
     FT_Done_Face(m_face);
     FT_Done_FreeType(m_ft);
 
-    // Configure VAO/VBO
+    // 7. Setup buffers and shaders
     setupBuffers();
-    
-    // Compile shaders
     compileShaders();
     
     m_initialized = true;
+    checkGLErrors("Init complete");
 }
-
 void TextRenderer::setupBuffers() {
     glGenVertexArrays(1, &m_vao);
     glGenBuffers(1, &m_vbo);
@@ -164,6 +211,8 @@ void TextRenderer::setupBuffers() {
 void TextRenderer::setProjection(int width, int height) {
     m_windowWidth = width;
     m_windowHeight = height;
+
+    std::cout << "Projection set to: " << width << "x" << height << "\n";
 }
 
 void TextRenderer::renderText(const std::string& text, float x, float y, float scale, const float color[4]) {
@@ -172,21 +221,18 @@ void TextRenderer::renderText(const std::string& text, float x, float y, float s
     // Activate corresponding render state
     glUseProgram(m_shaderProgram);
     
-    // Set projection matrix
-
+    // Set common uniforms
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(m_windowWidth), 
                                      0.0f, static_cast<float>(m_windowHeight));
     glUniformMatrix4fv(glGetUniformLocation(m_shaderProgram, "projection"), 
                       1, GL_FALSE, glm::value_ptr(projection));
     
-    // Set text color (default white)
+    // Set text color
     float textColor[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-    if (color) {
-        std::copy(color, color + 4, textColor);
-    }
+    if (color) std::copy(color, color + 4, textColor);
     glUniform4f(glGetUniformLocation(m_shaderProgram, "textColor"), 
                textColor[0], textColor[1], textColor[2], textColor[3]);
-    
+
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(m_vao);
 
@@ -196,7 +242,6 @@ void TextRenderer::renderText(const std::string& text, float x, float y, float s
 
         float xpos = x + ch.bearingX * scale;
         float ypos = y - (ch.height - ch.bearingY) * scale;
-
         float w = ch.width * scale;
         float h = ch.height * scale;
 
@@ -214,15 +259,15 @@ void TextRenderer::renderText(const std::string& text, float x, float y, float s
         // Render glyph texture over quad
         glBindTexture(GL_TEXTURE_2D, ch.textureID);
         
-        // Update content of VBO memory
+        // Update VBO content
         glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         // Render quad
         glDrawArrays(GL_TRIANGLES, 0, 6);
-        
-        // Advance cursors for next glyph
+
+        // Advance cursor
         x += (ch.advance >> 6) * scale;
     }
 
