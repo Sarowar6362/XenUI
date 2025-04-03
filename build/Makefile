@@ -174,30 +174,6 @@ XenUI/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/build
 .PHONY : XenUI/fast
 
-src/core/App.o: src/core/App.cpp.o
-.PHONY : src/core/App.o
-
-# target to build an object file
-src/core/App.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/core/App.cpp.o
-.PHONY : src/core/App.cpp.o
-
-src/core/App.i: src/core/App.cpp.i
-.PHONY : src/core/App.i
-
-# target to preprocess a source file
-src/core/App.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/core/App.cpp.i
-.PHONY : src/core/App.cpp.i
-
-src/core/App.s: src/core/App.cpp.s
-.PHONY : src/core/App.s
-
-# target to generate assembly for a file
-src/core/App.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/core/App.cpp.s
-.PHONY : src/core/App.cpp.s
-
 src/graphics/sdl2/TextRenderer.o: src/graphics/sdl2/TextRenderer.cpp.o
 .PHONY : src/graphics/sdl2/TextRenderer.o
 
@@ -246,6 +222,30 @@ src/platform/linux/linux.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.s
 .PHONY : src/platform/linux/linux.cpp.s
 
+src/ui/Button.o: src/ui/Button.cpp.o
+.PHONY : src/ui/Button.o
+
+# target to build an object file
+src/ui/Button.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/ui/Button.cpp.o
+.PHONY : src/ui/Button.cpp.o
+
+src/ui/Button.i: src/ui/Button.cpp.i
+.PHONY : src/ui/Button.i
+
+# target to preprocess a source file
+src/ui/Button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/ui/Button.cpp.i
+.PHONY : src/ui/Button.cpp.i
+
+src/ui/Button.s: src/ui/Button.cpp.s
+.PHONY : src/ui/Button.s
+
+# target to generate assembly for a file
+src/ui/Button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/ui/Button.cpp.s
+.PHONY : src/ui/Button.cpp.s
+
 src/ui/Label.o: src/ui/Label.cpp.o
 .PHONY : src/ui/Label.o
 
@@ -283,15 +283,15 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... XenUI"
-	@echo "... src/core/App.o"
-	@echo "... src/core/App.i"
-	@echo "... src/core/App.s"
 	@echo "... src/graphics/sdl2/TextRenderer.o"
 	@echo "... src/graphics/sdl2/TextRenderer.i"
 	@echo "... src/graphics/sdl2/TextRenderer.s"
 	@echo "... src/platform/linux/linux.o"
 	@echo "... src/platform/linux/linux.i"
 	@echo "... src/platform/linux/linux.s"
+	@echo "... src/ui/Button.o"
+	@echo "... src/ui/Button.i"
+	@echo "... src/ui/Button.s"
 	@echo "... src/ui/Label.o"
 	@echo "... src/ui/Label.i"
 	@echo "... src/ui/Label.s"

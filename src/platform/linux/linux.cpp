@@ -1,104 +1,115 @@
-//src/platform/linux/linux.cpp
-//dont remove first two comments
+// src/platform/linux/linux.cpp
+// dont remove first two comments
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
+#include <vector>
 #include <cstring>  // For memcpy
 #include "../../graphics/sdl2/TextRenderer.h"
 #include "../../ui/Label.h"
+#include "../../ui/Button.h"
 
 // Global text renderer instance
 TextRenderer& textRenderer = TextRenderer::getInstance();
+std::vector<Label> labels;  
+std::vector<Button> buttons; // Store buttons in a vector
+
+void setupLabels() {
+    labels.emplace_back("First Label 56", 10, 10, 1.0f, SDL_Color{255, 255, 255, 255});
+    labels.emplace_back("Second Label", 200, 50, 1.0f, SDL_Color{0, 255, 0, 255});
+}
+
+void setupButtons() {
+    buttons.emplace_back("Click Me", 100, 200, 120, 50, SDL_Color{0, 0, 255, 255},
+                         SDL_Color{255, 255, 255, 255}, []() {
+                             std::cout << "Button 1 Clicked!" << std::endl;
+                         });
+
+    buttons.emplace_back("Exit", 300, 200, 120, 50, SDL_Color{255, 0, 0, 255},
+                         SDL_Color{255, 255, 255, 255}, []() {
+                             std::cout << "Exit Button Clicked!" << std::endl;
+                             exit(0); // Close the application
+                         });
+}
 
 void render(SDL_Renderer* renderer) {
-    // Clear screen with black
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 80, 100, 100, 255);
     SDL_RenderClear(renderer);
 
-    // Render test label
-    static Label testLabel("Xenon UI Label", 50, 500, 1.0f);
-    static bool firstRun = true;
-
-    if (firstRun) {
-        SDL_Color blueColor = {255, 255, 255, 255};
-        testLabel.setColor(blueColor);
-        firstRun = false;
+    for (Label& label : labels) {
+        label.draw();
     }
-    testLabel.draw();
 
-    // Present the renderer (display the result)
+    for (Button& button : buttons) {
+        button.draw(renderer);  // ✅ Pass renderer
+    }
+
     SDL_RenderPresent(renderer);
 }
 
 void setup(SDL_Window* window, SDL_Renderer* renderer) {
     const char* fontPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
-    
+
     std::cout << "Initializing text renderer...\n";
     if (!textRenderer.isInitialized()) {
-        textRenderer.init(renderer, fontPath, 30);  // Pass SDL_Renderer here
+        textRenderer.init(renderer, fontPath, 20);
     }
 
     if (!textRenderer.isInitialized()) {
         std::cerr << "TEXT RENDERER INIT FAILED!\n";
         exit(1);
     }
+
+    setupLabels();
+    setupButtons();
 }
 
-
 int main(int argc, char** argv) {
-    // Initialize SDL2
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0) {
         std::cerr << "SDL INIT ERROR: " << SDL_GetError() << "\n";
         return 1;
     }
 
-    // Create a resizable window
-SDL_Window* window = SDL_CreateWindow("Xenon UI", 
-    SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
-    800, 600, 
-    SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("Xenon UI",
+                                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                          800, 600, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
 
-// Check if window creation was successful
-if (!window) {
-std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
-exit(1);
-}
+    if (!window) {
+        std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
 
-// Create the renderer
-SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-if (!renderer) {
-std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
-exit(1);
-}
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (!renderer) {
+        std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
 
-    // Initialize SDL_ttf (for font rendering)
     if (TTF_Init() == -1) {
         std::cerr << "SDL_ttf INIT ERROR: " << TTF_GetError() << "\n";
         return 1;
     }
 
-    // Setup text renderer
     setup(window, renderer);
 
-    // Main loop
     bool running = true;
     SDL_Event event;
     while (running) {
-        // Handle events
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
             }
+
+            // Pass events to buttons
+            for (Button& button : buttons) {
+                button.handleEvent(event);
+            }
         }
 
-        // Render scene
         render(renderer);
-
-        // Delay to control frame rate
         SDL_Delay(16); // ~60 FPS
     }
 
-    // Cleanup and quit
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();

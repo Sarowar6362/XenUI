@@ -1,5 +1,3 @@
-//src/ui/Label.cpp
-//dont remove first two comments
 #include "Label.h"
 #include <cstring>  // For memcpy
 
@@ -25,7 +23,7 @@ void Label::setColor(const SDL_Color& color) {
 }
 
 void Label::draw() {
-    if(!m_text.empty()) {
-        m_textRenderer.renderText(m_text, m_x, m_y, m_color);
+    if (!m_text.empty()) {
+        m_textRenderer.renderText(m_text, m_x, m_y, m_color); // Use updated m_x, m_y
     }
 }

@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/sarowar/Documents/XenonUI/src/core/App.cpp" "CMakeFiles/XenUI.dir/src/core/App.cpp.o" "gcc" "CMakeFiles/XenUI.dir/src/core/App.cpp.o.d"
   "/home/sarowar/Documents/XenonUI/src/graphics/sdl2/TextRenderer.cpp" "CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o" "gcc" "CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o.d"
   "/home/sarowar/Documents/XenonUI/src/platform/linux/linux.cpp" "CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o" "gcc" "CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o.d"
+  "/home/sarowar/Documents/XenonUI/src/ui/Button.cpp" "CMakeFiles/XenUI.dir/src/ui/Button.cpp.o" "gcc" "CMakeFiles/XenUI.dir/src/ui/Button.cpp.o.d"
   "/home/sarowar/Documents/XenonUI/src/ui/Label.cpp" "CMakeFiles/XenUI.dir/src/ui/Label.cpp.o" "gcc" "CMakeFiles/XenUI.dir/src/ui/Label.cpp.o.d"
   )
 

@@ -7,6 +7,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include <fstream>
+#include <unordered_map>
 
 
 class TextRenderer {
@@ -16,7 +17,7 @@ public:
     void init(SDL_Renderer* renderer, const std::string& fontPath, int fontSize);
     void renderText(const std::string& text, int x, int y, SDL_Color color);
     bool isInitialized() const { return m_initialized; } // Checks if the renderer is initialized
-
+    void clearCache(); // Clears stored textures when needed
 private:
     TextRenderer();
     ~TextRenderer();
@@ -24,6 +25,7 @@ private:
     SDL_Renderer* m_renderer;
     TTF_Font* m_font;
     bool m_initialized;
+    std::unordered_map<std::string, SDL_Texture*> textCache; // Cache for rendered text
 };
 
 #endif
