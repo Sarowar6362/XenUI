@@ -1,44 +1,41 @@
 //src/platform/linux/linux.cpp
-//dont remove first two coomments
-#include <GL/glew.h>
-#include <GL/glut.h>
+//dont remove first two comments
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include <cstring>  // For memcpy
-#include "../../graphics/opengl/TextRenderer.h"
+#include "../../graphics/sdl2/TextRenderer.h"
 #include "../../ui/Label.h"
 
+// Global text renderer instance
 TextRenderer& textRenderer = TextRenderer::getInstance();
 
-void render() {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Set up OpenGL state
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+void render(SDL_Renderer* renderer) {
+    // Clear screen with black
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
 
     // Render test label
-    static Label testLabel("Xenon UI Label", 50.0f, 500.0f, 1.0f);
+    static Label testLabel("Xenon UI Label", 50, 500, 1.0f);
     static bool firstRun = true;
-    
+
     if (firstRun) {
-        float blueColor[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+        SDL_Color blueColor = {255, 255, 255, 255};
         testLabel.setColor(blueColor);
         firstRun = false;
     }
     testLabel.draw();
 
-    glutSwapBuffers();
+    // Present the renderer (display the result)
+    SDL_RenderPresent(renderer);
 }
 
-void setup() {
+void setup(SDL_Window* window, SDL_Renderer* renderer) {
     const char* fontPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
-    
     
     std::cout << "Initializing text renderer...\n";
     if (!textRenderer.isInitialized()) {
-        textRenderer.init(fontPath, 30);
-        textRenderer.setProjection(800, 600);
+        textRenderer.init(renderer, fontPath, 30);  // Pass SDL_Renderer here
     }
 
     if (!textRenderer.isInitialized()) {
@@ -47,49 +44,65 @@ void setup() {
     }
 }
 
+
 int main(int argc, char** argv) {
-    // Initialize GLUT
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_MULTISAMPLE);
-    glutInitWindowSize(800, 600);
-    glutCreateWindow("OpenGL Text Rendering Demo");
-
-    // Initialize GLEW with error checking
-    glewExperimental = GL_TRUE;
-    GLenum glewErr = glewInit();
-    if (glewErr != GLEW_OK) {
-        std::cerr << "GLEW INIT ERROR: " << glewGetErrorString(glewErr) << "\n";
+    // Initialize SDL2
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0) {
+        std::cerr << "SDL INIT ERROR: " << SDL_GetError() << "\n";
         return 1;
     }
 
-    // Print OpenGL context info
-    std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << "\n"
-              << "GLSL Version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << "\n"
-              << "Renderer: " << glGetString(GL_RENDERER) << "\n";
+    // Create a resizable window
+SDL_Window* window = SDL_CreateWindow("Xenon UI", 
+    SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
+    800, 600, 
+    SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
 
-    // Check for required OpenGL features
-    GLint redFormatSupport;
-    glGetInternalformativ(GL_TEXTURE_2D, GL_RED, GL_INTERNALFORMAT_SUPPORTED, 1, &redFormatSupport);
-    if (!redFormatSupport) {
-        std::cerr << "ERROR: GL_RED texture format not supported!\n";
+// Check if window creation was successful
+if (!window) {
+std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+exit(1);
+}
+
+// Create the renderer
+SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+if (!renderer) {
+std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+exit(1);
+}
+
+    // Initialize SDL_ttf (for font rendering)
+    if (TTF_Init() == -1) {
+        std::cerr << "SDL_ttf INIT ERROR: " << TTF_GetError() << "\n";
         return 1;
     }
 
-    // Setup and verify
-    setup();
+    // Setup text renderer
+    setup(window, renderer);
 
-    // Check for OpenGL errors
-    GLenum glErr;
-    while ((glErr = glGetError()) != GL_NO_ERROR) {
-        std::cerr << "OpenGL ERROR: " << glErr << "\n";
+    // Main loop
+    bool running = true;
+    SDL_Event event;
+    while (running) {
+        // Handle events
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                running = false;
+            }
+        }
+
+        // Render scene
+        render(renderer);
+
+        // Delay to control frame rate
+        SDL_Delay(16); // ~60 FPS
     }
 
-    // Set up callbacks
-    glutDisplayFunc(render);
-    glutIdleFunc([]() { glutPostRedisplay(); }); // Continuous rendering
-
-    // Start main loop
-    glutMainLoop();
+    // Cleanup and quit
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    TTF_Quit();
+    SDL_Quit();
 
     return 0;
 }

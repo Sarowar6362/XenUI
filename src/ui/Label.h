@@ -1,26 +1,27 @@
 //src/ui/Label.h
-//dont remove first two coomments
+//dont remove first two comments
 #ifndef LABEL_H
 #define LABEL_H
 
 #include <string>
-#include "../graphics/opengl/TextRenderer.h"
+#include <SDL2/SDL.h>
+#include "../graphics/sdl2/TextRenderer.h"
 
 class Label {
 public:
-    Label(const std::string& text, float x, float y, float scale, const float color[4] = nullptr);
+    Label(const std::string& text, int x, int y, float scale, const SDL_Color& color = {255, 255, 255, 255});
     void setText(const std::string& newText);
-    void setPosition(float x, float y);
+    void setPosition(int x, int y);
     void setScale(float scale);
-    void setColor(const float color[4]);
+    void setColor(const SDL_Color& color);
     void draw();
 
 private:
     std::string m_text;
-    float m_x;
-    float m_y;
+    int m_x;
+    int m_y;
     float m_scale;
-    float m_color[4];
+    SDL_Color m_color;
     TextRenderer& m_textRenderer;
 };
 

@@ -198,29 +198,29 @@ src/core/App.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/core/App.cpp.s
 .PHONY : src/core/App.cpp.s
 
-src/graphics/opengl/TextRenderer.o: src/graphics/opengl/TextRenderer.cpp.o
-.PHONY : src/graphics/opengl/TextRenderer.o
+src/graphics/sdl2/TextRenderer.o: src/graphics/sdl2/TextRenderer.cpp.o
+.PHONY : src/graphics/sdl2/TextRenderer.o
 
 # target to build an object file
-src/graphics/opengl/TextRenderer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.o
-.PHONY : src/graphics/opengl/TextRenderer.cpp.o
+src/graphics/sdl2/TextRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o
+.PHONY : src/graphics/sdl2/TextRenderer.cpp.o
 
-src/graphics/opengl/TextRenderer.i: src/graphics/opengl/TextRenderer.cpp.i
-.PHONY : src/graphics/opengl/TextRenderer.i
+src/graphics/sdl2/TextRenderer.i: src/graphics/sdl2/TextRenderer.cpp.i
+.PHONY : src/graphics/sdl2/TextRenderer.i
 
 # target to preprocess a source file
-src/graphics/opengl/TextRenderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.i
-.PHONY : src/graphics/opengl/TextRenderer.cpp.i
+src/graphics/sdl2/TextRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.i
+.PHONY : src/graphics/sdl2/TextRenderer.cpp.i
 
-src/graphics/opengl/TextRenderer.s: src/graphics/opengl/TextRenderer.cpp.s
-.PHONY : src/graphics/opengl/TextRenderer.s
+src/graphics/sdl2/TextRenderer.s: src/graphics/sdl2/TextRenderer.cpp.s
+.PHONY : src/graphics/sdl2/TextRenderer.s
 
 # target to generate assembly for a file
-src/graphics/opengl/TextRenderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/opengl/TextRenderer.cpp.s
-.PHONY : src/graphics/opengl/TextRenderer.cpp.s
+src/graphics/sdl2/TextRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.s
+.PHONY : src/graphics/sdl2/TextRenderer.cpp.s
 
 src/platform/linux/linux.o: src/platform/linux/linux.cpp.o
 .PHONY : src/platform/linux/linux.o
@@ -286,9 +286,9 @@ help:
 	@echo "... src/core/App.o"
 	@echo "... src/core/App.i"
 	@echo "... src/core/App.s"
-	@echo "... src/graphics/opengl/TextRenderer.o"
-	@echo "... src/graphics/opengl/TextRenderer.i"
-	@echo "... src/graphics/opengl/TextRenderer.s"
+	@echo "... src/graphics/sdl2/TextRenderer.o"
+	@echo "... src/graphics/sdl2/TextRenderer.i"
+	@echo "... src/graphics/sdl2/TextRenderer.s"
 	@echo "... src/platform/linux/linux.o"
 	@echo "... src/platform/linux/linux.i"
 	@echo "... src/platform/linux/linux.s"
