@@ -1338,7 +1338,6 @@ CMakeFiles/XenUI.dir/src/ui/Label.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
-  /usr/include/c++/13/cstring \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
@@ -1354,6 +1353,7 @@ CMakeFiles/XenUI.dir/src/ui/Label.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/
   /usr/include/c++/13/initializer_list \
   /usr/include/c++/13/ios \
   /usr/include/c++/13/iosfwd \
+  /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
   /usr/include/c++/13/math.h \

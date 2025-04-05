@@ -20,12 +20,12 @@ void setupLabels() {
 }
 
 void setupButtons() {
-    buttons.emplace_back("Click Me", 100, 200, 120, 50, SDL_Color{0, 0, 255, 255},
+    buttons.emplace_back("Click Me", 150, 200, 130, 50, SDL_Color{110, 200, 50, 255},
                          SDL_Color{255, 255, 255, 255}, []() {
                              std::cout << "Button 1 Clicked!" << std::endl;
                          });
 
-    buttons.emplace_back("Exit", 300, 200, 120, 50, SDL_Color{255, 0, 0, 255},
+    buttons.emplace_back("Exit", 300, 200, 120, 50, SDL_Color{255, 0, 50, 255},
                          SDL_Color{255, 255, 255, 255}, []() {
                              std::cout << "Exit Button Clicked!" << std::endl;
                              exit(0); // Close the application
