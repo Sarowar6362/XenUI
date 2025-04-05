@@ -10,6 +10,11 @@
 #include "../../ui/Button.h"
 
 // Global text renderer instance
+
+
+SDL_Window* window  = nullptr;
+SDL_Renderer* renderer = nullptr;
+
 TextRenderer& textRenderer = TextRenderer::getInstance();
 std::vector<Label> labels;  
 std::vector<Button> buttons; // Store buttons in a vector
@@ -20,7 +25,7 @@ void setupLabels() {
 }
 
 void setupButtons() {
-    buttons.emplace_back("Click Me", 150, 200, 130, 50, SDL_Color{110, 200, 50, 255},
+    buttons.emplace_back("Click Me again and again", 150, 200, 130, 50, SDL_Color{110, 200, 50, 255},
                          SDL_Color{255, 255, 255, 255}, []() {
                              std::cout << "Button 1 Clicked!" << std::endl;
                          });
@@ -30,21 +35,6 @@ void setupButtons() {
                              std::cout << "Exit Button Clicked!" << std::endl;
                              exit(0); // Close the application
                          });
-}
-
-void render(SDL_Renderer* renderer) {
-    SDL_SetRenderDrawColor(renderer, 80, 100, 100, 255);
-    SDL_RenderClear(renderer);
-
-    for (Label& label : labels) {
-        label.draw();
-    }
-
-    for (Button& button : buttons) {
-        button.draw(renderer);  // ✅ Pass renderer
-    }
-
-    SDL_RenderPresent(renderer);
 }
 
 void setup(SDL_Window* window, SDL_Renderer* renderer) {
@@ -64,13 +54,14 @@ void setup(SDL_Window* window, SDL_Renderer* renderer) {
     setupButtons();
 }
 
-int main(int argc, char** argv) {
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0) {
+int sdl_init(void) {
+
+ if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0) {
         std::cerr << "SDL INIT ERROR: " << SDL_GetError() << "\n";
         return 1;
     }
 
-    SDL_Window* window = SDL_CreateWindow("Xenon UI",
+    window = SDL_CreateWindow("Xenon UI",
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                           800, 600, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
 
@@ -79,7 +70,7 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (!renderer) {
         std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
         exit(1);
@@ -91,7 +82,29 @@ int main(int argc, char** argv) {
     }
 
     setup(window, renderer);
+     return 0;
 
+}
+
+void render(SDL_Renderer* renderer) {
+    SDL_SetRenderDrawColor(renderer, 80, 100, 100, 255);
+    SDL_RenderClear(renderer);
+
+    for (Label& label : labels) {
+        label.draw();
+    }
+
+    for (Button& button : buttons) {
+        button.draw(renderer);  // ✅ Pass renderer
+    }
+
+    SDL_RenderPresent(renderer);
+}
+
+
+
+int main(int argc, char** argv) {
+    if(!sdl_init()) return 1;
     bool running = true;
     SDL_Event event;
     while (running) {
