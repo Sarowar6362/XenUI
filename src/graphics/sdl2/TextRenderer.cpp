@@ -1,3 +1,4 @@
+//XenonUI/src/graphics/sdl2/TextRenderer.cpp
 #include "TextRenderer.h"
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
@@ -90,4 +91,27 @@ void TextRenderer::clearCache() {
         }
     }
     textCache.clear();
+}
+
+
+
+// NEW: For immediate-mode rendering (no caching)
+SDL_Texture* TextRenderer::renderTextImmediateToTexture(const std::string& text, SDL_Color color, int& outW, int& outH) {
+    SDL_Surface* surface = TTF_RenderText_Blended(m_font, text.c_str(), color);
+    if (!surface) {
+        std::cerr << "Error creating immediate surface: " << TTF_GetError() << std::endl;
+        return nullptr;
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderer, surface);
+    outW = surface->w;
+    outH = surface->h;
+    SDL_FreeSurface(surface);
+
+    if (!texture) {
+        std::cerr << "Error creating immediate texture: " << SDL_GetError() << std::endl;
+        return nullptr;
+    }
+
+    return texture;
 }

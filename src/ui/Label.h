@@ -34,5 +34,10 @@ private:
     void generateCache();  // only used when caching is enabled
 };
 
+// === Immediate Mode Label API ===
+namespace XenUI {
+    void Label(const std::string& text, int x, int y, float scale = 1.0f, const SDL_Color& color = {255, 255, 255, 255}, bool enableCache = false);
+}
+
 #endif
 
