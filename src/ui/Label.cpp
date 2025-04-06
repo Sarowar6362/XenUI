@@ -2,6 +2,8 @@
 #include "../graphics/sdl2/TextRenderer.h"
 #include <iostream>
 
+
+
 Label::Label(const std::string& text, int x, int y, float scale, const SDL_Color& color, bool cacheText)
     : m_text(text), m_x(x), m_y(y), m_scale(scale),
       m_color(color), m_textRenderer(TextRenderer::getInstance()), m_cacheText(cacheText) {
@@ -64,3 +66,54 @@ void Label::draw() {
         }
     }
 }
+
+
+
+
+// === IMMEDIATE MODE LABEL ===
+namespace XenUI {
+
+    void Label(const std::string& text, int x, int y, float scale, const SDL_Color& color, bool enableCache) {
+        auto& textRenderer = TextRenderer::getInstance();
+    
+        if (!textRenderer.isInitialized()) {
+            std::cerr << "TextRenderer not initialized!\n";
+            return;
+        }
+    
+        if (enableCache) {
+            int w, h;
+            SDL_Texture* tex = textRenderer.renderTextToTexture(text, color, w, h);
+            if (tex) {
+                SDL_Rect dst = {x, y, int(w * scale), int(h * scale)};
+                SDL_RenderCopy(textRenderer.getRenderer(), tex, nullptr, &dst);
+            }
+        } else {
+            textRenderer.renderText(text, x, y, color);
+        }
+
+
+        // Inside XenUI::Label(...)
+        if (enableCache) {
+            int w, h;
+            SDL_Texture* tex = textRenderer.renderTextToTexture(text, color, w, h);
+            if (tex) {
+                SDL_Rect dst = {x, y, int(w * scale), int(h * scale)};
+                SDL_RenderCopy(textRenderer.getRenderer(), tex, nullptr, &dst);
+            }
+        } else {
+            int w, h;
+            SDL_Texture* tex = textRenderer.renderTextImmediateToTexture(text, color, w, h);
+            if (tex) {
+                SDL_Rect dst = {x, y, int(w * scale), int(h * scale)};
+                SDL_RenderCopy(textRenderer.getRenderer(), tex, nullptr, &dst);
+                SDL_DestroyTexture(tex); // clean up right after use
+            }
+        }
+
+    }
+    
+
+    
+    }
+    

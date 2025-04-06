@@ -40,6 +40,11 @@ void render(SDL_Renderer* renderer) {
         label.draw();
     }
 
+
+    // Immediate mode labels
+    XenUI::Label("Immediate Label A", 10, 100, 1.0f,  SDL_Color{200, 200, 50, 255}, false); 
+    XenUI::Label("FPS: 60", 700, 10, 1.0f,  SDL_Color{255, 255, 255, 255});
+
     for (Button& button : buttons) {
         button.draw(renderer);  // ✅ Pass renderer
     }

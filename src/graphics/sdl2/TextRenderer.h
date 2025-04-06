@@ -21,6 +21,10 @@ public:
     SDL_Texture* renderTextToTexture(const std::string& text, SDL_Color color, int& outW, int& outH);
     SDL_Renderer* getRenderer() const;
 
+    // Add this to public section:
+    SDL_Texture* renderTextImmediateToTexture(const std::string& text, SDL_Color color, int& outW, int& outH);
+
+
 private:
     TextRenderer();
     ~TextRenderer();
