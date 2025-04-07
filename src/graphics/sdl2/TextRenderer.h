@@ -23,7 +23,7 @@ public:
 
     // Add this to public section:
     SDL_Texture* renderTextImmediateToTexture(const std::string& text, SDL_Color color, int& outW, int& outH);
-
+    void measureText(const std::string& text, int& w, int& h);
 
 private:
     TextRenderer();

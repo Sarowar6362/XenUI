@@ -20,17 +20,26 @@ void setupLabels() {
 }
 
 void setupButtons() {
-    buttons.emplace_back("Click Me", 150, 200, 130, 50, SDL_Color{110, 200, 50, 255},
-                         SDL_Color{255, 255, 255, 255}, []() {
-                             std::cout << "Button 1 Clicked!" << std::endl;
-                         });
+    // Create a ButtonStyle for the first button
+    ButtonStyle style1;
+    style1.bgColor = {110, 200, 50, 255};
+    style1.textColor = {255, 255, 255, 255};
 
-    buttons.emplace_back("Exit", 300, 200, 120, 50, SDL_Color{255, 0, 50, 255},
-                         SDL_Color{255, 255, 255, 255}, []() {
-                             std::cout << "Exit Button Clicked!" << std::endl;
-                             exit(0); // Close the application
-                         });
+    buttons.emplace_back("Click Me and not working", 150, 200, 130, 50, style1, []() {
+        std::cout << "Button 1 Clicked!" << std::endl;
+    });
+
+    // Create a ButtonStyle for the second button
+    ButtonStyle style2;
+    style2.bgColor = {255, 0, 50, 255};
+    style2.textColor = {255, 255, 255, 255};
+
+    buttons.emplace_back("Exit and exit button", 450, 200, 120, 50, style2, []() {
+        std::cout << "Exit Button Clicked!" << std::endl;
+        exit(0); // Close the application
+    });
 }
+
 
 void render(SDL_Renderer* renderer) {
     SDL_SetRenderDrawColor(renderer, 80, 100, 100, 255);
@@ -48,6 +57,35 @@ void render(SDL_Renderer* renderer) {
     for (Button& button : buttons) {
         button.draw(renderer);  // ✅ Pass renderer
     }
+
+
+                    //text, x, y, width, height, color(rgb)
+    // === Immediate mode buttons ===
+
+    // Default style, auto-sizing
+    ButtonStyle blackstyle;
+    blackstyle.textColor = {255, 255, 255, 255};
+    blackstyle.bgColor = {0, 0, 0, 255};
+    if (XenUI::Button("ok_btn", "Ok and this button is expanding", 200, 300, blackstyle)) {
+        std::cout << "OK Button Pressed\n";
+    }
+
+    // Custom style
+    ButtonStyle redStyle;
+    redStyle.bgColor = {180, 30, 30, 255};
+    redStyle.textColor = {255, 255, 255, 255};
+    redStyle.paddingX = 20;
+    redStyle.paddingY = 10;
+
+    
+
+    if (XenUI::Button("exit_btn", "Exit-this button is also expanding", 200, 360, redStyle)) {
+        std::cout << "Exit Button Pressed\n";
+        exit(0);
+    }
+
+    
+
 
     SDL_RenderPresent(renderer);
 }

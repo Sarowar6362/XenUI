@@ -115,3 +115,8 @@ SDL_Texture* TextRenderer::renderTextImmediateToTexture(const std::string& text,
 
     return texture;
 }
+
+void TextRenderer::measureText(const std::string& text, int& w, int& h) {
+    if (!m_font) return;
+    TTF_SizeText(m_font, text.c_str(), &w, &h);
+}
