@@ -26,6 +26,7 @@ set(SOURCES
     src/graphics/sdl2/TextRenderer.cpp  # Assuming SDL2-based TextRenderer implementation
     src/platform/linux/linux.cpp
     src/ui/Label.cpp
+    src/ui/Shape.cpp
     src/ui/Button.cpp
     # Add other source files as needed
 )

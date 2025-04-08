@@ -7,6 +7,7 @@
 #include <cstring>  // For memcpy
 #include "../../graphics/sdl2/TextRenderer.h"
 #include "../../ui/Label.h"
+#include "../../ui/Shape.h"
 #include "../../ui/Button.h"
 
 // Global text renderer instance
@@ -44,6 +45,12 @@ void setupButtons() {
 void render(SDL_Renderer* renderer) {
     SDL_SetRenderDrawColor(renderer, 80, 100, 100, 255);
     SDL_RenderClear(renderer);
+
+    XenUI::Rectangle rect(50, 50, 200, 100, SDL_Color{50, 150, 255, 255});
+    XenUI::Circle circle(300, 150, 60, SDL_Color{255, 80, 80, 255});
+
+    rect.draw(renderer);
+    circle.draw(renderer);
 
     for (Label& label : labels) {
         label.draw();
