@@ -294,6 +294,54 @@ src/ui/Shape.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/ui/Shape.cpp.s
 .PHONY : src/ui/Shape.cpp.s
 
+src/utils/Anchor.o: src/utils/Anchor.cpp.o
+.PHONY : src/utils/Anchor.o
+
+# target to build an object file
+src/utils/Anchor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o
+.PHONY : src/utils/Anchor.cpp.o
+
+src/utils/Anchor.i: src/utils/Anchor.cpp.i
+.PHONY : src/utils/Anchor.i
+
+# target to preprocess a source file
+src/utils/Anchor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.i
+.PHONY : src/utils/Anchor.cpp.i
+
+src/utils/Anchor.s: src/utils/Anchor.cpp.s
+.PHONY : src/utils/Anchor.s
+
+# target to generate assembly for a file
+src/utils/Anchor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.s
+.PHONY : src/utils/Anchor.cpp.s
+
+src/utils/WindowUtil.o: src/utils/WindowUtil.cpp.o
+.PHONY : src/utils/WindowUtil.o
+
+# target to build an object file
+src/utils/WindowUtil.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o
+.PHONY : src/utils/WindowUtil.cpp.o
+
+src/utils/WindowUtil.i: src/utils/WindowUtil.cpp.i
+.PHONY : src/utils/WindowUtil.i
+
+# target to preprocess a source file
+src/utils/WindowUtil.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.i
+.PHONY : src/utils/WindowUtil.cpp.i
+
+src/utils/WindowUtil.s: src/utils/WindowUtil.cpp.s
+.PHONY : src/utils/WindowUtil.s
+
+# target to generate assembly for a file
+src/utils/WindowUtil.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XenUI.dir/build.make CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.s
+.PHONY : src/utils/WindowUtil.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -322,6 +370,12 @@ help:
 	@echo "... src/ui/Shape.o"
 	@echo "... src/ui/Shape.i"
 	@echo "... src/ui/Shape.s"
+	@echo "... src/utils/Anchor.o"
+	@echo "... src/utils/Anchor.i"
+	@echo "... src/utils/Anchor.s"
+	@echo "... src/utils/WindowUtil.o"
+	@echo "... src/utils/WindowUtil.i"
+	@echo "... src/utils/WindowUtil.s"
 .PHONY : help
 
 

@@ -325,6 +325,10 @@ CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o: \
  /usr/include/c++/13/bits/erase_if.h \
  /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/Label.h \
  /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/../graphics/sdl2/TextRenderer.h \
+ /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/../utils/Anchor.h \
+ /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/../utils/Position.h \
+ /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/../utils/Anchor.h \
+ /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/../utils/WindowUtil.h \
  /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/Shape.h \
  /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/Button.h \
  /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
@@ -332,4 +336,6 @@ CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o: \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \
  /usr/include/c++/13/bits/uniform_int_dist.h \
- /usr/include/c++/13/bits/stl_tempbuf.h
+ /usr/include/c++/13/bits/stl_tempbuf.h \
+ /home/sarowar/Documents/XenonUI/src/platform/linux/../../utils/Anchor.h \
+ /home/sarowar/Documents/XenonUI/src/platform/linux/../../utils/Position.h

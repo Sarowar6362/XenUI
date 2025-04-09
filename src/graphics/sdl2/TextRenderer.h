@@ -24,6 +24,8 @@ public:
     // Add this to public section:
     SDL_Texture* renderTextImmediateToTexture(const std::string& text, SDL_Color color, int& outW, int& outH);
     void measureText(const std::string& text, int& w, int& h);
+     SDL_Point getTextSize(const std::string& text, float scale);
+
 
 private:
     TextRenderer();

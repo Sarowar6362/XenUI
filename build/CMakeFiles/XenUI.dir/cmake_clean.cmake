@@ -9,6 +9,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/XenUI.dir/src/ui/Label.cpp.o.d"
   "CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o"
   "CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o.d"
+  "CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o"
+  "CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o.d"
+  "CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o"
+  "CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o.d"
   "XenUI"
   "XenUI.pdb"
 )

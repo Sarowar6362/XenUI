@@ -1,16 +1,19 @@
+// Button.h
 #ifndef BUTTON_H
 #define BUTTON_H
 
 #include <SDL2/SDL.h>
 #include <string>
-#include <functional>  // ✅ Added to fix std::function error
+#include <functional>
 #include "../graphics/sdl2/TextRenderer.h"
+#include "../utils/Anchor.h"
+#include "../utils/Position.h" // *** ADDED ***
+#include <iostream>
 
-
-// Define ButtonStyle structure
+// Define ButtonStyle structure (keep as is)
 struct ButtonStyle {
-    SDL_Color bgColor;
-    SDL_Color textColor;
+    SDL_Color bgColor = {100, 100, 100, 255};
+    SDL_Color textColor = {255, 255, 255, 255};
     bool drawBackground = true;
     bool drawBorder = true;
     int paddingX = 10;
@@ -19,31 +22,37 @@ struct ButtonStyle {
 
 class Button {
 public:
-    Button(const std::string& text, int x, int y, int width, int height,
-           ButtonStyle style, std::function<void()> onClick);
+    // === RETAINED MODE ===
+    // *** MODIFIED Constructor signature ***
+    Button(const std::string& text,
+           const XenUI::PositionParams& posParams, // Use PositionParams
+           ButtonStyle style,
+           std::function<void()> onClick);
 
     void draw(SDL_Renderer* renderer);
     void handleEvent(const SDL_Event& event);
+    void recalculatePosition();
 
 private:
     std::string m_text;
-    int m_x, m_y, m_width, m_height;
+    XenUI::PositionParams m_posParams; // *** ADDED: Store positioning intent ***
+    // Remove m_anchor, m_relativeOffsetX, m_relativeOffsetY - replaced by m_posParams
+    // Keep calculated values:
+    int m_posX;
+    int m_posY;
+    int m_width;
+    int m_height;
     ButtonStyle m_style;
     std::function<void()> m_onClick;
     bool m_hovered;
 };
 
-
-
 // === IMMEDIATE MODE BUTTON API ===
 namespace XenUI {
-    // Returns true if the button is clicked
-    
-        
-        
-        bool Button(const std::string& id, const std::string& text, int x, int y,
-            ButtonStyle style = {});
-}
+    // *** MODIFIED: Single signature using PositionParams ***
+    bool Button(const std::string& id, const std::string& text,
+                const PositionParams& posParams, // Use PositionParams
+                ButtonStyle style = {});
+} // namespace XenUI
 
-
-#endif
+#endif // BUTTON_H

@@ -120,3 +120,11 @@ void TextRenderer::measureText(const std::string& text, int& w, int& h) {
     if (!m_font) return;
     TTF_SizeText(m_font, text.c_str(), &w, &h);
 }
+SDL_Point TextRenderer::getTextSize(const std::string& text, float scale) {
+    if (!m_font) return {0, 0};
+
+    int w, h;
+    TTF_SizeText(m_font, text.c_str(), &w, &h);
+    return {static_cast<int>(w * scale), static_cast<int>(h * scale)};
+}
+

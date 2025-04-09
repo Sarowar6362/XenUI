@@ -26,6 +26,8 @@ set(SOURCES
     src/graphics/sdl2/TextRenderer.cpp  # Assuming SDL2-based TextRenderer implementation
     src/platform/linux/linux.cpp
     src/ui/Label.cpp
+    src/utils/Anchor.cpp
+    src/utils/WindowUtil.cpp
     src/ui/Shape.cpp
     src/ui/Button.cpp
     # Add other source files as needed
@@ -48,6 +50,25 @@ target_link_libraries(XenUI PRIVATE
     SDL2_ttf::SDL2_ttf
     dl
     pthread
+)
+
+# Specify the source font file location
+set(SOURCE_FONT_PATH "${CMAKE_SOURCE_DIR}/third_party/dejavu-fonts-ttf-2.37/ttf/DejaVuSans.ttf")
+
+# Specify the destination directory relative to the executable in the build folder
+set(DESTINATION_FONT_DIR "${CMAKE_BINARY_DIR}/assets/fonts") # CMAKE_BINARY_DIR is your build dir
+
+# Ensure the destination directory exists before trying to copy
+file(MAKE_DIRECTORY "${DESTINATION_FONT_DIR}")
+
+# Add a command to copy the font after the executable is built
+add_custom_command(
+    TARGET XenUI POST_BUILD # Execute after building the XenUI target
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different # Use CMake's copy tool
+            "${SOURCE_FONT_PATH}"                   # Source file
+            "${DESTINATION_FONT_DIR}/DejaVuSans.ttf" # Destination file (with filename)
+    COMMENT "Copying DejaVuSans.ttf to assets/fonts"
+    VERBATIM
 )
 
 # Install target (optional)
