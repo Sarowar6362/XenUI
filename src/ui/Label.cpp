@@ -96,7 +96,7 @@ void Label::recalculatePosition() {
 // === IMMEDIATE MODE LABEL ===
 namespace XenUI {
 
-    void Label(const std::string& text, const XenUI::PositionParams& posParams, float scale, const SDL_Color& color, bool enableCache) {
+    void Label(const std::string& text, const XenUI::PositionParams& posParams, float scale , const SDL_Color& color, bool enableCache) {
         auto& textRenderer = TextRenderer::getInstance();
 
         if (!textRenderer.isInitialized()) {

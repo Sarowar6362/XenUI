@@ -50,10 +50,10 @@ extern TextRenderer& textRenderer;
     m_posY = finalPos.y;
 
     // Debug output (optional)
-    std::cout << "Retained Button '" << m_text << "' created. Mode: "
-    << (m_posParams.mode == XenUI::PositionMode::ABSOLUTE ? "Abs" : "Anch")
-    << ", Size: (" << m_width << ", " << m_height
-    << "), Final Pos: (" << m_posX << ", " << m_posY << ")" << std::endl;
+    // std::cout << "Retained Button '" << m_text << "' created. Mode: "
+    // << (m_posParams.mode == XenUI::PositionMode::ABSOLUTE ? "Abs" : "Anch")
+    // << ", Size: (" << m_width << ", " << m_height
+    // << "), Final Pos: (" << m_posX << ", " << m_posY << ")" << std::endl;
 }
 
 // --- draw() method (Should be OK - uses m_posX, m_posY, m_width, m_height) ---

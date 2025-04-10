@@ -33,7 +33,7 @@ void setupLabels() {
     
     labels.emplace_back("Another Label", 
         XenUI::PositionParams::Anchored(XenUI::Anchor::BOTTOM_RIGHT, -10, -20), 
-        1.0f, 
+         1.f,
         SDL_Color{255, 255, 255, 255}, true);
     
     //  std::cout << "Label setup needs refactoring to use PositionParams.\n";
@@ -109,9 +109,12 @@ void render(SDL_Renderer* renderer) {
             //text                                                   //(x, y), scale, color, cacheText
      XenUI::Label("Immediate Label A", XenUI::PositionParams::Absolute(10, 100), 1.0f, SDL_Color{200, 200, 50, 255}, true);
                    //text                                                //(position, x, y), scale, color, cacheText
-    XenUI::Label("FPS: 60", XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 10), 1.0f, SDL_Color{255, 255, 255, 255}, true);
+    XenUI::Label("FPS: 60", XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 10), 1.f,SDL_Color{255, 255, 255, 255}, true);
 
    
+
+
+
 
     // Immediate mode buttons using PositionParams
     ButtonStyle blackstyle;
@@ -183,67 +186,91 @@ void setup(SDL_Window* window, SDL_Renderer* renderer) {
 }
 
 // main function (event loop structure remains largely the same)
+
 int main(int argc, char** argv) {
-    // ... SDL Init, Window, Renderer creation ...
-
-
 
     // 1. Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0) {
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
-        return 1; // Exit if SDL fails
+        return 1;
     }
 
-    // 2. Create the Window
-    //    This line declares the 'window' variable and assigns the created window to it.
+    // 2. Create the Window (as you have it)
     SDL_Window* window = SDL_CreateWindow(
-        "Your Window Title",           // Title
-        SDL_WINDOWPOS_CENTERED,        // X position
-        SDL_WINDOWPOS_CENTERED,        // Y position
-        800,                           // Width
-        600,                           // Height
-        SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN // Flags
+        "Xenon UI",                    // Window title
+        SDL_WINDOWPOS_CENTERED,        // Initial x position
+        SDL_WINDOWPOS_CENTERED,        // Initial y position
+        800,                           // Initial Width
+        600,                           // Initial Height
+        SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN // Flags (Resizable is important)
     );
 
-    // Check if window creation was successful
-    if (window == nullptr) { // Use nullptr for pointer comparison
+    if (window == nullptr) {
         std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
-        SDL_Quit(); // Clean up SDL
-        return 1;   // Exit
+        SDL_Quit();
+        return 1;
     }
+
+    // *** === ADD THIS: Set Minimum Window Size === ***
+    const int MIN_WINDOW_WIDTH = 400;  // Example minimum width
+    const int MIN_WINDOW_HEIGHT = 200; // Example minimum height
+    SDL_SetWindowMinimumSize(window, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT);
+    std::cout << "Minimum window size set to " << MIN_WINDOW_WIDTH << "x" << MIN_WINDOW_HEIGHT << std::endl;
+    // *** ======================================== ***
 
     // 3. Create the Renderer
-    //    This line declares the 'renderer' variable and assigns the created renderer to it.
     SDL_Renderer* renderer = SDL_CreateRenderer(
-        window,                       // The window to render into
-        -1,                           // Rendering driver index (-1 for first available)
-        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC // Flags (VSync recommended)
+        window,
+        -1,
+        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
     );
 
-    // Check if renderer creation was successful
-    if (renderer == nullptr) { // Use nullptr for pointer comparison
+    if (renderer == nullptr) {
         std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
-        SDL_DestroyWindow(window); // Clean up the window we created
-        SDL_Quit();                // Clean up SDL
-        return 1;                  // Exit
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 1;
     }
 
+    // 4. Initialize TTF
+    if (TTF_Init() == -1) {
+        std::cerr << "SDL_ttf could not initialize! TTF_Error: " << TTF_GetError() << std::endl;
+        // ... cleanup ...
+        return 1;
+    }
 
-     if (TTF_Init() == -1) { // Ensure TTF is initialized
-         std::cerr << "SDL_ttf INIT ERROR: " << TTF_GetError() << "\n";
-         return 1;
-     }
-
-
+    // 5. Call Setup
     setup(window, renderer);
 
+    // 6. Main Loop
     bool running = true;
     SDL_Event event;
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
-            } else if (event.type == SDL_WINDOWEVENT) {
+            }
+            // *** === ADD THIS: Fullscreen Toggle Logic === ***
+            else if (event.type == SDL_KEYDOWN) { // Check for key presses
+                // Toggle fullscreen on F11 press
+                if (event.key.keysym.sym == SDLK_F11) {
+                    // Get current window flags to check if already fullscreen
+                    Uint32 current_flags = SDL_GetWindowFlags(window);
+                    bool is_fullscreen = (current_flags & SDL_WINDOW_FULLSCREEN_DESKTOP) || (current_flags & SDL_WINDOW_FULLSCREEN);
+
+                    if (is_fullscreen) {
+                        // Turn fullscreen OFF
+                        SDL_SetWindowFullscreen(window, 0);
+                        std::cout << "Exited fullscreen mode." << std::endl;
+                    } else {
+                        // Turn fullscreen ON (using desktop resolution)
+                        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+                        std::cout << "Entered fullscreen (desktop) mode." << std::endl;
+                    }
+                }
+            }
+            // *** ======================================= ***
+             else if (event.type == SDL_WINDOWEVENT) {
                  if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                     // std::cout << "Window Resized!" << std::endl;
                     // Recalculate positions for retained anchored elements
@@ -254,7 +281,7 @@ int main(int argc, char** argv) {
                     for (XenUI::Shape& shape : shapes) { shape.recalculatePosition(); } // TODO
                  }
             }
-
+        
             // Pass events to retained mode buttons
             for (Button& button : buttons) {
                 button.handleEvent(event);
