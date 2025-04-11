@@ -317,4 +317,7 @@ CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o: \
  /usr/include/c++/13/ext/aligned_buffer.h \
  /usr/include/c++/13/bits/enable_special_members.h \
  /usr/include/c++/13/bits/node_handle.h \
- /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/iostream
+ /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/map \
+ /usr/include/c++/13/bits/stl_tree.h /usr/include/c++/13/bits/stl_map.h \
+ /usr/include/c++/13/bits/stl_multimap.h /usr/include/c++/13/iostream \
+ /usr/include/c++/13/sstream /usr/include/c++/13/bits/sstream.tcc

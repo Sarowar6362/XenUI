@@ -111,6 +111,7 @@ CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o: /home/sarowar/Documen
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/specfun.h \
+  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_construct.h \
@@ -118,7 +119,10 @@ CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o: /home/sarowar/Documen
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
+  /usr/include/c++/13/bits/stl_map.h \
+  /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_tree.h \
   /usr/include/c++/13/bits/streambuf.tcc \
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
@@ -154,11 +158,13 @@ CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o: /home/sarowar/Documen
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/map \
   /usr/include/c++/13/math.h \
   /usr/include/c++/13/new \
   /usr/include/c++/13/numbers \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/stdlib.h \
   /usr/include/c++/13/streambuf \
@@ -523,8 +529,11 @@ CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o: /home/sarowar/Documents/Xen
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
+  /usr/include/c++/13/bits/stl_map.h \
+  /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_pair.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
+  /usr/include/c++/13/bits/stl_tree.h \
   /usr/include/c++/13/bits/stl_uninitialized.h \
   /usr/include/c++/13/bits/stl_vector.h \
   /usr/include/c++/13/bits/streambuf.tcc \
@@ -566,6 +575,7 @@ CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o: /home/sarowar/Documents/Xen
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/map \
   /usr/include/c++/13/math.h \
   /usr/include/c++/13/new \
   /usr/include/c++/13/numbers \
@@ -931,9 +941,12 @@ CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: /home/sarowar/Documents/XenonUI/src/ui
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
+  /usr/include/c++/13/bits/stl_map.h \
+  /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_pair.h \
   /usr/include/c++/13/bits/stl_relops.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
+  /usr/include/c++/13/bits/stl_tree.h \
   /usr/include/c++/13/bits/stl_uninitialized.h \
   /usr/include/c++/13/bits/stl_vector.h \
   /usr/include/c++/13/bits/streambuf.tcc \
@@ -974,6 +987,7 @@ CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: /home/sarowar/Documents/XenonUI/src/ui
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/map \
   /usr/include/c++/13/math.h \
   /usr/include/c++/13/new \
   /usr/include/c++/13/numbers \
@@ -1334,7 +1348,10 @@ CMakeFiles/XenUI.dir/src/ui/Label.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
+  /usr/include/c++/13/bits/stl_map.h \
+  /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_tree.h \
   /usr/include/c++/13/bits/streambuf.tcc \
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
@@ -1370,6 +1387,7 @@ CMakeFiles/XenUI.dir/src/ui/Label.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/map \
   /usr/include/c++/13/math.h \
   /usr/include/c++/13/new \
   /usr/include/c++/13/numbers \
@@ -2736,21 +2754,21 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
-/usr/include/c++/13/bits/stl_function.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fp16intrin.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/hresetintrin.h:
+/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
-/usr/include/c++/13/tr1/beta_function.tcc:
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
-/usr/include/c++/13/bits/uses_allocator_args.h:
-
-/usr/include/c++/13/bits/algorithmfwd.h:
-
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxifmaintrin.h:
 
 /usr/include/c++/13/bits/max_size_type.h:
+
+/usr/include/c++/13/bits/stl_map.h:
+
+/usr/include/SDL2/SDL_clipboard.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/clzerointrin.h:
 
@@ -2759,6 +2777,8 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/asm-generic/errno.h:
+
+/usr/include/c++/13/bits/sstream.tcc:
 
 /usr/include/c++/13/bits/locale_facets.tcc:
 
@@ -2784,6 +2804,12 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/c++/13/numbers:
 
+/usr/include/c++/13/bits/stl_function.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/hresetintrin.h:
+
+/usr/include/c++/13/tr1/beta_function.tcc:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxneconvertintrin.h:
 
 /usr/include/c++/13/bits/move.h:
@@ -2793,14 +2819,6 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 /usr/include/SDL2/SDL_stdinc.h:
 
 /usr/include/c++/13/bits/memoryfwd.h:
-
-/usr/include/c++/13/bits/stl_uninitialized.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/wbnoinvdintrin.h:
-
-/usr/include/c++/13/bits/new_allocator.h:
-
-/usr/include/SDL2/SDL_thread.h:
 
 /usr/include/c++/13/bits/stl_relops.h:
 
@@ -2882,6 +2900,8 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/c++/13/bits/alloc_traits.h:
 
+/usr/include/c++/13/bits/stl_tree.h:
+
 /usr/include/c++/13/bits/codecvt.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512erintrin.h:
@@ -2924,7 +2944,9 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/c++/13/tr1/legendre_function.tcc:
 
-/usr/include/SDL2/SDL_clipboard.h:
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/include/c++/13/bits/hashtable.h:
 
 /usr/include/SDL2/SDL_hidapi.h:
 
@@ -2939,6 +2961,10 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxvnniint8intrin.h:
 
 /usr/include/SDL2/SDL_haptic.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
 /usr/include/SDL2/SDL_locale.h:
 
@@ -3001,6 +3027,20 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 /usr/include/c++/13/bits/std_abs.h:
 
 /usr/include/SDL2/SDL_misc.h:
+
+/usr/include/c++/13/bits/stl_uninitialized.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/wbnoinvdintrin.h:
+
+/usr/include/SDL2/SDL_thread.h:
+
+/usr/include/c++/13/bits/new_allocator.h:
+
+/usr/include/c++/13/bits/uses_allocator_args.h:
+
+/usr/include/c++/13/bits/algorithmfwd.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /usr/include/SDL2/SDL_metal.h:
 
@@ -3100,10 +3140,6 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
-/usr/include/c++/13/bits/hashtable.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
 /usr/include/c++/13/bits/ios_base.h:
 
 /usr/include/c++/13/bits/postypes.h:
@@ -3118,13 +3154,11 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/SDL2/SDL_timer.h:
 
-/usr/include/c++/13/cctype:
+/usr/include/c++/13/cwctype:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+/usr/include/SDL2/begin_code.h:
 
-/usr/include/c++/13/ext/atomicity.h:
-
-/usr/include/c++/13/tr1/gamma.tcc:
+/usr/include/SDL2/SDL_version.h:
 
 /usr/include/c++/13/bit:
 
@@ -3142,13 +3176,19 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/SDL2/SDL_pixels.h:
 
+/usr/include/c++/13/cctype:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/13/ext/atomicity.h:
+
+/usr/include/c++/13/tr1/gamma.tcc:
+
 /home/sarowar/Documents/XenonUI/src/platform/linux/linux.cpp:
 
 /usr/include/c++/13/cerrno:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/include/c++/13/clocale:
 
@@ -3169,12 +3209,6 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
 /usr/include/c++/13/cwchar:
-
-/usr/include/SDL2/begin_code.h:
-
-/usr/include/SDL2/SDL_version.h:
-
-/usr/include/c++/13/cwctype:
 
 /usr/include/c++/13/debug/assertions.h:
 
@@ -3197,10 +3231,6 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 /usr/include/c++/13/bits/stl_iterator.h:
 
 /usr/include/c++/13/ext/numeric_traits.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512fp16intrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512ifmaintrin.h:
 
@@ -3326,6 +3356,8 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
+/usr/include/c++/13/map:
+
 /usr/include/c++/13/string_view:
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
@@ -3364,14 +3396,12 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
+/usr/include/c++/13/bits/stl_multimap.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
+/usr/include/c++/13/sstream:
+
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:

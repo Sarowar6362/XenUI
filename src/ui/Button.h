@@ -19,19 +19,19 @@ struct ButtonStyle {
     int paddingX = 10;
     int paddingY = 5;
 };
-
-class Button {
-public:
-    // === RETAINED MODE ===
-    // *** MODIFIED Constructor signature ***
-    Button(const std::string& text,
-           const XenUI::PositionParams& posParams, // Use PositionParams
-           ButtonStyle style,
-           std::function<void()> onClick);
-
-    void draw(SDL_Renderer* renderer);
-    void handleEvent(const SDL_Event& event);
-    void recalculatePosition();
+const int DEFAULT_BUTTON_FONT_SIZE = 16;
+class Button { // Retained Mode
+    public:
+        // *** ADD fontSize parameter (with default) ***
+        Button(const std::string& text,
+               const XenUI::PositionParams& posParams,
+               ButtonStyle style,
+               std::function<void()> onClick,
+               int fontSize = DEFAULT_BUTTON_FONT_SIZE); // Added fontSize
+    
+        void draw(SDL_Renderer* renderer);
+        void handleEvent(const SDL_Event& event);
+        void recalculatePosition();
 
 private:
     std::string m_text;
@@ -45,14 +45,18 @@ private:
     ButtonStyle m_style;
     std::function<void()> m_onClick;
     bool m_hovered;
+
+    int m_fontSize; // *** ADDED: Store font size ***
+    
 };
 
-// === IMMEDIATE MODE BUTTON API ===
+// Immediate Mode
 namespace XenUI {
-    // *** MODIFIED: Single signature using PositionParams ***
+    // *** ADD fontSize parameter (with default) ***
     bool Button(const std::string& id, const std::string& text,
-                const PositionParams& posParams, // Use PositionParams
-                ButtonStyle style = {});
+                const PositionParams& posParams,
+                ButtonStyle style = {},
+                int fontSize = DEFAULT_BUTTON_FONT_SIZE); // Added fontSize
 } // namespace XenUI
 
 #endif // BUTTON_H

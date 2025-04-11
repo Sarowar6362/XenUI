@@ -8,23 +8,21 @@
 #include "../utils/Anchor.h"
 #include "../utils/Position.h"
 
-struct LabelStyle {
-    SDL_Color color = {255, 255, 255, 255};
-};
+
 
 class Label {
 public:
-    Label(const std::string& text, 
+    // CHANGE: Constructor signature
+    Label(const std::string& text,
         const XenUI::PositionParams& posParams,
-        float scale, 
-        const SDL_Color& color = {255, 255, 255, 255}, 
-        bool cacheText = false);
+        int fontSize, // Takes size
+        const SDL_Color& color = {255, 255, 255, 255});
 
-    ~Label();
+   
 
     void setText(const std::string& newText);
     void setPosition(int x, int y);
-    void setScale(float scale);
+    // void setScale(float scale);
     void setColor(const SDL_Color& color);
     void draw();
     void recalculatePosition(); // Recalculate position on window resize
@@ -35,27 +33,28 @@ private:
     XenUI::PositionParams m_posParams; 
     int m_x;
     int m_y;
-    float m_scale;
+    int m_height;
+    int m_width;
+    // float m_scale;
     SDL_Color m_color;
     TextRenderer& m_textRenderer;
+    int m_fontSize; // ADD: Store font size
+   // bool m_cacheText = false;
+   //  SDL_Texture* m_cachedTexture = nullptr;
+   // int m_cachedWidth = 0;
+   // int m_cachedHeight = 0;
 
-    bool m_cacheText = false;
-    SDL_Texture* m_cachedTexture = nullptr;
-    int m_cachedWidth = 0;
-    int m_cachedHeight = 0;
-
-    void generateCache();  // only used when caching is enabled
+    //void generateCache();  // only used when caching is enabled
 };
 
 // === Immediate Mode Label API ===
 namespace XenUI {
 
     // Function declaration for Label with PositionParams
-    void Label(const std::string& text, 
-               const XenUI::PositionParams& posParams,  // Using PositionParams for flexible positioning
-               float scale = 1.0f, 
-               const SDL_Color& color = {255, 255, 255, 255}, 
-               bool enableCache = false);
+    void Label(const std::string& text,
+        const XenUI::PositionParams& posParams,
+        int fontSize, // <<< Changed from scale
+        const SDL_Color& color);
 
 }
 #endif

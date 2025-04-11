@@ -28,13 +28,23 @@ std::vector<XenUI::Rectangle> shapes; // Example
 // This method calculates the position based on anchor
 // *** TODO: Refactor Label setup to use PositionParams ***
 
+//test variables
+int fps = 60 ;
+
 void setupLabels() {
     
     
+    labels.emplace_back("Fps : 60", 
+        XenUI::PositionParams::Anchored(XenUI::Anchor::CENTER, -100, -20), 
+         20,
+        SDL_Color{255, 255, 255, 255});
+
+
+
     labels.emplace_back("Another Label", 
         XenUI::PositionParams::Anchored(XenUI::Anchor::BOTTOM_RIGHT, -10, -20), 
-         1.f,
-        SDL_Color{255, 255, 255, 255}, true);
+         30,
+        SDL_Color{255, 255, 255, 255});
     
     //  std::cout << "Label setup needs refactoring to use PositionParams.\n";
 }
@@ -49,10 +59,28 @@ void setupButtons() {
 
     // Use PositionParams::Anchored for the first button
     buttons.emplace_back(
+        "Add immediate + retained mode Fps",                     // text
+        XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_LEFT, 50, 370), // Position
+        style1,                         // style
+        []() { 
+            fps++;
+            std::string UpdatedText = "Fps : "+ std::to_string(fps);
+            labels[0].setText(UpdatedText);
+            
+            std::cout << "Button 1 Clicked!" << std::endl; 
+        }, // onClick
+        30
+    );
+
+
+
+
+    buttons.emplace_back(
         "Click Me",                     // text
         XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_LEFT, 50, 50), // Position
         style1,                         // style
-        []() { std::cout << "Button 1 Clicked!" << std::endl; } // onClick
+        []() { std::cout << "Button 1 Clicked!" << std::endl; }, // onClick
+        40
     );
 
     ButtonStyle style2;
@@ -97,32 +125,37 @@ void render(SDL_Renderer* renderer) {
 
 
 
+
+
     // === Immediate mode elements ===
 
 
 
 
 
-
-
     // Immediate mode labels - TODO: Refactor XenUI::Label to use PositionParams
-            //text                                                   //(x, y), scale, color, cacheText
-     XenUI::Label("Immediate Label A", XenUI::PositionParams::Absolute(10, 100), 1.0f, SDL_Color{200, 200, 50, 255}, true);
-                   //text                                                //(position, x, y), scale, color, cacheText
-    XenUI::Label("FPS: 60", XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 10), 1.f,SDL_Color{255, 255, 255, 255}, true);
+            //text                                                   //(x, y), fontSize, color, cacheText
+     XenUI::Label("Immediate Label A", XenUI::PositionParams::Absolute(10, 100), 30, SDL_Color{200, 200, 50, 255});
+                   //text                                                //(position, x, y), textSize, color, cacheText
+    XenUI::Label("FPS: 60", XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 10), 30, SDL_Color{255, 255, 255, 255});
 
    
 
-
+ 
 
 
     // Immediate mode buttons using PositionParams
     ButtonStyle blackstyle;
     blackstyle.textColor = {255, 255, 255, 255};
     blackstyle.bgColor = {0, 0, 0, 255};
-    if (XenUI::Button("ok_btn", "Ok (Absolute)", XenUI::PositionParams::Absolute(200, 300), blackstyle)) {
+    if (XenUI::Button("ok_btn", "Add immediate mode Fps only", XenUI::PositionParams::Absolute(200, 300), blackstyle, 30)) { //fontSize = 30 
+        fps++;
         std::cout << "OK Button Pressed\n";
     }
+    //test example, for fps counter
+    std::string fpsText = "Fps : " + std::to_string(fps);
+
+    XenUI::Label(fpsText, XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 30), 30, SDL_Color{0, 255, 0, 255} );
 
     ButtonStyle redStyle;
     redStyle.bgColor = {180, 30, 30, 255};
@@ -130,7 +163,7 @@ void render(SDL_Renderer* renderer) {
     redStyle.paddingX = 20;
     redStyle.paddingY = 10;
     // Anchored Exit Button
-    if (XenUI::Button("exit_btn", "Exit (Anchored)", XenUI::PositionParams::Anchored(XenUI::Anchor::BOTTOM_CENTER, 0, -30), redStyle)) {
+    if (XenUI::Button("exit_btn", "Exit (Anchored)", XenUI::PositionParams::Anchored(XenUI::Anchor::BOTTOM_CENTER, 0, -30), redStyle)) { //default fontSize = 16
         std::cout << "Exit Button Pressed\n";
         exit(0);
         // Consider setting a flag `running = false;` instead of exit(0);
@@ -172,7 +205,7 @@ void setup(SDL_Window* window, SDL_Renderer* renderer) {
 
     std::cout << "Initializing text renderer...\n";
     if (!textRenderer.isInitialized()) {
-        textRenderer.init(renderer, fontPath, 20); // Use constructed path
+        textRenderer.init(renderer, fontPath); // Use constructed path
     }
 
     if (!textRenderer.isInitialized()) {

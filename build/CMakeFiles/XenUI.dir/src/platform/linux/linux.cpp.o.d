@@ -322,7 +322,9 @@ CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o: \
  /usr/include/c++/13/ext/aligned_buffer.h \
  /usr/include/c++/13/bits/enable_special_members.h \
  /usr/include/c++/13/bits/node_handle.h \
- /usr/include/c++/13/bits/erase_if.h \
+ /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/map \
+ /usr/include/c++/13/bits/stl_tree.h /usr/include/c++/13/bits/stl_map.h \
+ /usr/include/c++/13/bits/stl_multimap.h \
  /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/Label.h \
  /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/../graphics/sdl2/TextRenderer.h \
  /home/sarowar/Documents/XenonUI/src/platform/linux/../../ui/../utils/Anchor.h \
