@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DFREETYPE_GL_USE_VAO
 
-CXX_INCLUDES = -I/home/sarowar/Documents/XenonUI/include -isystem /usr/include/SDL2 -isystem /usr/include/freetype2
+CXX_INCLUDES = -I/home/sarowar/Documents/XenonUI/include -isystem /usr/include/freetype2 -isystem /usr/include/SDL2
 
 CXX_FLAGS = -std=gnu++20
 

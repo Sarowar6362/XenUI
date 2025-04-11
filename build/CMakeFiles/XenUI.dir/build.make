@@ -111,10 +111,38 @@ CMakeFiles/XenUI.dir/src/ui/Label.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/XenUI.dir/src/ui/Label.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sarowar/Documents/XenonUI/src/ui/Label.cpp -o CMakeFiles/XenUI.dir/src/ui/Label.cpp.s
 
+CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: CMakeFiles/XenUI.dir/flags.make
+CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/Button.cpp
+CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: CMakeFiles/XenUI.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/XenUI.dir/src/ui/Button.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/XenUI.dir/src/ui/Button.cpp.o -MF CMakeFiles/XenUI.dir/src/ui/Button.cpp.o.d -o CMakeFiles/XenUI.dir/src/ui/Button.cpp.o -c /home/sarowar/Documents/XenonUI/src/ui/Button.cpp
+
+CMakeFiles/XenUI.dir/src/ui/Button.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/XenUI.dir/src/ui/Button.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sarowar/Documents/XenonUI/src/ui/Button.cpp > CMakeFiles/XenUI.dir/src/ui/Button.cpp.i
+
+CMakeFiles/XenUI.dir/src/ui/Button.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/XenUI.dir/src/ui/Button.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sarowar/Documents/XenonUI/src/ui/Button.cpp -o CMakeFiles/XenUI.dir/src/ui/Button.cpp.s
+
+CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o: CMakeFiles/XenUI.dir/flags.make
+CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp
+CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o: CMakeFiles/XenUI.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o -MF CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o.d -o CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o -c /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp
+
+CMakeFiles/XenUI.dir/src/ui/Shape.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/XenUI.dir/src/ui/Shape.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp > CMakeFiles/XenUI.dir/src/ui/Shape.cpp.i
+
+CMakeFiles/XenUI.dir/src/ui/Shape.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/XenUI.dir/src/ui/Shape.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp -o CMakeFiles/XenUI.dir/src/ui/Shape.cpp.s
+
 CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o: CMakeFiles/XenUI.dir/flags.make
 CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o: /home/sarowar/Documents/XenonUI/src/utils/Anchor.cpp
 CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o: CMakeFiles/XenUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o -MF CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o.d -o CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o -c /home/sarowar/Documents/XenonUI/src/utils/Anchor.cpp
 
 CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.i: cmake_force
@@ -128,7 +156,7 @@ CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.s: cmake_force
 CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: CMakeFiles/XenUI.dir/flags.make
 CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: /home/sarowar/Documents/XenonUI/src/utils/WindowUtil.cpp
 CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o: CMakeFiles/XenUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o -MF CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o.d -o CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o -c /home/sarowar/Documents/XenonUI/src/utils/WindowUtil.cpp
 
 CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.i: cmake_force
@@ -139,43 +167,15 @@ CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sarowar/Documents/XenonUI/src/utils/WindowUtil.cpp -o CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.s
 
-CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o: CMakeFiles/XenUI.dir/flags.make
-CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp
-CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o: CMakeFiles/XenUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o -MF CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o.d -o CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o -c /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp
-
-CMakeFiles/XenUI.dir/src/ui/Shape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/XenUI.dir/src/ui/Shape.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp > CMakeFiles/XenUI.dir/src/ui/Shape.cpp.i
-
-CMakeFiles/XenUI.dir/src/ui/Shape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/XenUI.dir/src/ui/Shape.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sarowar/Documents/XenonUI/src/ui/Shape.cpp -o CMakeFiles/XenUI.dir/src/ui/Shape.cpp.s
-
-CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: CMakeFiles/XenUI.dir/flags.make
-CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: /home/sarowar/Documents/XenonUI/src/ui/Button.cpp
-CMakeFiles/XenUI.dir/src/ui/Button.cpp.o: CMakeFiles/XenUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/XenUI.dir/src/ui/Button.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/XenUI.dir/src/ui/Button.cpp.o -MF CMakeFiles/XenUI.dir/src/ui/Button.cpp.o.d -o CMakeFiles/XenUI.dir/src/ui/Button.cpp.o -c /home/sarowar/Documents/XenonUI/src/ui/Button.cpp
-
-CMakeFiles/XenUI.dir/src/ui/Button.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/XenUI.dir/src/ui/Button.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sarowar/Documents/XenonUI/src/ui/Button.cpp > CMakeFiles/XenUI.dir/src/ui/Button.cpp.i
-
-CMakeFiles/XenUI.dir/src/ui/Button.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/XenUI.dir/src/ui/Button.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sarowar/Documents/XenonUI/src/ui/Button.cpp -o CMakeFiles/XenUI.dir/src/ui/Button.cpp.s
-
 # Object files for target XenUI
 XenUI_OBJECTS = \
 "CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o" \
 "CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o" \
 "CMakeFiles/XenUI.dir/src/ui/Label.cpp.o" \
-"CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o" \
-"CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o" \
+"CMakeFiles/XenUI.dir/src/ui/Button.cpp.o" \
 "CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o" \
-"CMakeFiles/XenUI.dir/src/ui/Button.cpp.o"
+"CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o" \
+"CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o"
 
 # External object files for target XenUI
 XenUI_EXTERNAL_OBJECTS =
@@ -183,17 +183,16 @@ XenUI_EXTERNAL_OBJECTS =
 XenUI: CMakeFiles/XenUI.dir/src/graphics/sdl2/TextRenderer.cpp.o
 XenUI: CMakeFiles/XenUI.dir/src/platform/linux/linux.cpp.o
 XenUI: CMakeFiles/XenUI.dir/src/ui/Label.cpp.o
+XenUI: CMakeFiles/XenUI.dir/src/ui/Button.cpp.o
+XenUI: CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o
 XenUI: CMakeFiles/XenUI.dir/src/utils/Anchor.cpp.o
 XenUI: CMakeFiles/XenUI.dir/src/utils/WindowUtil.cpp.o
-XenUI: CMakeFiles/XenUI.dir/src/ui/Shape.cpp.o
-XenUI: CMakeFiles/XenUI.dir/src/ui/Button.cpp.o
 XenUI: CMakeFiles/XenUI.dir/build.make
 XenUI: /usr/lib/x86_64-linux-gnu/libGL.so
-XenUI: /usr/lib/x86_64-linux-gnu/libGLU.so
-XenUI: /usr/lib/x86_64-linux-gnu/libfreetype.so
 XenUI: /usr/lib/x86_64-linux-gnu/libfreetype.so
 XenUI: /usr/lib/x86_64-linux-gnu/libSDL2.so
 XenUI: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
+XenUI: /usr/lib/x86_64-linux-gnu/libfontconfig.so
 XenUI: CMakeFiles/XenUI.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/sarowar/Documents/XenonUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable XenUI"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/XenUI.dir/link.txt --verbose=$(VERBOSE)

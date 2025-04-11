@@ -35,15 +35,15 @@ void setupLabels() {
     
     
     labels.emplace_back("Fps : 60", 
-        XenUI::PositionParams::Anchored(XenUI::Anchor::CENTER, -100, -20), 
-         20,
+        XenUI::PositionParams::Anchored(XenUI::Anchor::CENTER, -100, -30), 
+         23, //textSize
         SDL_Color{255, 255, 255, 255});
 
 
 
     labels.emplace_back("Another Label", 
         XenUI::PositionParams::Anchored(XenUI::Anchor::BOTTOM_RIGHT, -10, -20), 
-         30,
+         30, //textSize
         SDL_Color{255, 255, 255, 255});
     
     //  std::cout << "Label setup needs refactoring to use PositionParams.\n";
@@ -55,8 +55,7 @@ void setupButtons() {
     ButtonStyle style1;
     style1.textColor = {255, 255, 255, 255};
     style1.bgColor = {10, 200, 100, 255};
-    
-
+ 
     // Use PositionParams::Anchored for the first button
     buttons.emplace_back(
         "Add immediate + retained mode Fps",                     // text
@@ -86,7 +85,6 @@ void setupButtons() {
     ButtonStyle style2;
     style2.textColor = {255, 255, 255, 255};
     style2.bgColor = {50, 50, 50, 255};
-    
 
     // Use PositionParams::Anchored for the second button
     buttons.emplace_back(
@@ -134,9 +132,9 @@ void render(SDL_Renderer* renderer) {
 
 
     // Immediate mode labels - TODO: Refactor XenUI::Label to use PositionParams
-            //text                                                   //(x, y), fontSize, color, cacheText
+            //text                                                   //(x, y), fontSize, color
      XenUI::Label("Immediate Label A", XenUI::PositionParams::Absolute(10, 100), 30, SDL_Color{200, 200, 50, 255});
-                   //text                                                //(position, x, y), textSize, color, cacheText
+                   //text                                                //(position, x, y), textSize, color
     XenUI::Label("FPS: 60", XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 10), 30, SDL_Color{255, 255, 255, 255});
 
    
@@ -146,8 +144,9 @@ void render(SDL_Renderer* renderer) {
 
     // Immediate mode buttons using PositionParams
     ButtonStyle blackstyle;
-    blackstyle.textColor = {255, 255, 255, 255};
-    blackstyle.bgColor = {0, 0, 0, 255};
+    blackstyle.textColor = {255, 255, 255, 255}; //r,g,b,a
+    blackstyle.bgColor = {0, 0, 0, 255}; //black background
+                                                                                                //x, y
     if (XenUI::Button("ok_btn", "Add immediate mode Fps only", XenUI::PositionParams::Absolute(200, 300), blackstyle, 30)) { //fontSize = 30 
         fps++;
         std::cout << "OK Button Pressed\n";
@@ -155,7 +154,7 @@ void render(SDL_Renderer* renderer) {
     //test example, for fps counter
     std::string fpsText = "Fps : " + std::to_string(fps);
 
-    XenUI::Label(fpsText, XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 30), 30, SDL_Color{0, 255, 0, 255} );
+    XenUI::Label(fpsText, XenUI::PositionParams::Anchored(XenUI::Anchor::TOP_RIGHT, -10, 40), 25, SDL_Color{0, 255, 0, 255} );
 
     ButtonStyle redStyle;
     redStyle.bgColor = {180, 30, 30, 255};
@@ -173,49 +172,29 @@ void render(SDL_Renderer* renderer) {
 }
 
 // setup function - Ensure TextRenderer init still happens
+// In linux.cpp (Application Code)
 void setup(SDL_Window* window, SDL_Renderer* renderer) {
     XenUI::SetWindow(window); // Set window reference for GetWindowSize
 
-    // *** Fix Font Path for Cross-Platform ***
-    const char* fontName = "DejaVuSans.ttf"; // Or your bundled font name
-    std::string fontPath = "";
-    char* basePath_c = SDL_GetBasePath();
-     if (!basePath_c) {
-         std::cerr << "Error getting base path: " << SDL_GetError() << std::endl;
-         // Fallback: Try a common system path (still not ideal)
-         #ifdef _WIN32
-             fontPath = "C:/Windows/Fonts/arial.ttf"; // Example Windows fallback
-         #elif __APPLE__
-              fontPath = "/Library/Fonts/Arial.ttf"; // Example macOS fallback
-         #else // Linux / other POSIX
-             fontPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"; // Original path as last resort
-         #endif
-         std::cerr << "Warning: Using fallback font path: " << fontPath << std::endl;
-     } else {
-         std::string basePath(basePath_c);
-         SDL_free(basePath_c); // IMPORTANT: Free the memory!
-         #ifdef _WIN32
-             fontPath = basePath + "assets\\fonts\\" + fontName; // Assumes font is in assets/fonts
-         #else
-             fontPath = basePath + "assets/fonts/" + fontName; // Assumes font is in assets/fonts
-         #endif
-          std::cout << "Attempting to load font from: " << fontPath << std::endl;
-     }
-
-
-    std::cout << "Initializing text renderer...\n";
+    std::cout << "Initializing text renderer (framework finds font)...\n";
     if (!textRenderer.isInitialized()) {
-        textRenderer.init(renderer, fontPath); // Use constructed path
+        // Framework's init now handles font discovery
+        // Optionally pass preferences:
+    //     std::vector<std::string> prefs = {"Noto Sans", "DejaVu Sans"};
+    //   textRenderer.init(renderer, prefs);
+
+        // Simple call, using default preferences internal to TextRenderer
+        textRenderer.init(renderer);
     }
 
     if (!textRenderer.isInitialized()) {
-        std::cerr << "TEXT RENDERER INIT FAILED! Check font path: " << fontPath << std::endl;
-        // Maybe try loading a guaranteed system font as a last resort? Or exit.
+        std::cerr << "CRITICAL ERROR: TEXT RENDERER FAILED TO INITIALIZE - NO FONT FOUND." << std::endl;
+        // Consider a graceful exit or fallback UI without text
         exit(1);
     }
 
-    setupLabels(); // Needs refactoring internally
-    setupButtons(); // Now uses PositionParams
+    setupLabels();
+    setupButtons();
 }
 
 // main function (event loop structure remains largely the same)
