@@ -7,14 +7,14 @@
 #include <cstring>  // For memcpy
 #include <string>
 #include <chrono>
-#include "../../graphics/sdl2/TextRenderer.h"
-#include "../../ui/Label.h"
-#include "../../ui/InputBox.h"
-#include "../../ui/Shape.h"
-#include "../../ui/Button.h"
-#include "../../utils/WindowUtil.h"
-#include "../../utils/Anchor.h"  // Include Anchor header
-#include "../../utils/Position.h" // *** ADDED ***
+#include "XenUI/TextRenderer.h"
+#include "XenUI/Label.h"
+#include "XenUI/InputBox.h"
+#include "XenUI/Shape.h"
+#include "XenUI/Button.h"
+#include "XenUI/WindowUtil.h"
+#include "XenUI/Anchor.h"  // Include Anchor header
+#include "XenUI/Position.h" // *** ADDED ***
 
 // src/platform/linux/linux.cpp
 // ... other includes ...
@@ -338,7 +338,7 @@ int main(int argc, char** argv) {
                          button.recalculatePosition(); // Calls internal CalculateFinalPosition
                     }
                     for (Label& label : labels) { label.recalculatePosition(); } // TODO
-                    for (XenUI::Shape& shape : shapes) { shape.recalculatePosition(); } // TODO
+                    // for (XenUI::Shape& shape : shapes) { shape.recalculatePosition(); } // TODO
                     for(XenUI::InputBox& box : Inputs) { box.recalculatePosition();}
                  }
             }
@@ -358,15 +358,15 @@ int main(int argc, char** argv) {
 
 // Inside the while(running) loop in main()
 
-// --- Calculate deltaTime (Example using chrono) ---
-static auto lastTime = std::chrono::high_resolution_clock::now();
-auto currentTime = std::chrono::high_resolution_clock::now();
-std::chrono::duration<float> dtChrono = currentTime - lastTime;
-lastTime = currentTime;
-float deltaTime = dtChrono.count();
-for (auto& box : Inputs) {
-    box.update(deltaTime);
-}
+// // --- Calculate deltaTime (Example using chrono) ---
+// static auto lastTime = std::chrono::high_resolution_clock::now();
+// auto currentTime = std::chrono::high_resolution_clock::now();
+// std::chrono::duration<float> dtChrono = currentTime - lastTime;
+// lastTime = currentTime;
+// float deltaTime = dtChrono.count();
+// for (auto& box : Inputs) {
+//     box.update(deltaTime);
+// }
 // --- End deltaTime Calculation ---
 
 // ... event loop happens above ...
